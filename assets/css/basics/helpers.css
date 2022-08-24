@@ -21,3 +21,9 @@
 .grid {
     display: grid;
 }
+
+.main-layout {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}

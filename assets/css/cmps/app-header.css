@@ -1,25 +1,37 @@
 header {
-    background: rgb(92, 57, 57);
-    border-bottom: 2px solid white;
-    color: white;
+    background: var(--clr-default)
+    /* border-bottom: 2px solid white; */
 }
 
 .app-header {
+    padding: 20px 0;
+    border-bottom: 2px solid rgb(172, 172, 172);
+}
+
+.app-header div {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    align-items: center;
 }
 
 nav a {
-    margin: .5em;
+    margin-inline-start: 1em;
+    font-size: 20px;
+    padding-bottom: 10px;
 }
 
-nav a:active {
-    color: purple;
+nav a:hover {
+    color: rgb(110, 71, 238);
+    box-shadow: inset 0px -2px 0px 0px rgb(110, 71, 238);
 }
 
 nav a.active {
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: overline;
+    color: rgb(138, 71, 238);
+    box-shadow: inset 0px -2px 0px 0px rgb(110, 71, 238);
+}
+
+.app-header h3 {
+    color: rgb(110, 71, 238);
+    font-family: oleo;
+    font-size: 40px;
 }

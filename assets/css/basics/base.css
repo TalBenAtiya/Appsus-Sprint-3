@@ -1,4 +1,14 @@
+:root {
+    --clr-default: rgb(240, 240, 240);
+}
+
+html {
+    font-family: lato-thin;
+    font-weight: 600;
+}
+
 body {
+    background-color: var(--clr-default);
     margin: 0;
 }
 

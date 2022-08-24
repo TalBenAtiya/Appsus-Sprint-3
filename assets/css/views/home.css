@@ -1,0 +1,36 @@
+.home {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.home-img-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 50px;
+
+}
+
+.home-img-container img {
+    width: 25%;
+}
+
+.home-img-container img:first-child {
+    padding-bottom: 20px;
+}
+
+.home-img-container img:last-child {
+    padding-bottom: 10px;
+}
+
+.home h1 {
+    font-size: 30px;
+}
+
+.home h1 span {
+    font-family: oleo;
+}
+
+.home p {
+    font-size: 20px;
+}
