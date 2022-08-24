@@ -4,6 +4,7 @@ import { storageService } from "../../../services/storage.service.js"
 export const noteService = {
     query,
     getNotes,
+    changeNoteColor,
 }
 
 const KEY = 'notesDB'
@@ -30,7 +31,7 @@ const gNotes = [
             txt:''
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "#fff"
         },
         label: ["Get my stuff together"],
     },
@@ -43,6 +44,9 @@ const gNotes = [
                 { txt: "Driving liscence", doneAt: null ,id:utilService.makeId()},
                 { txt: "Coding power", doneAt: 187111111,id:utilService.makeId() }
             ]
+        },
+        style: {
+            backgroundColor: "#fff"
         },
         label: ["Get my stuff together"],
     }
@@ -60,14 +64,28 @@ function _loadFromStorage() {
     return storageService.loadFromStorage(KEY)
 }
 
-function query() {
+function query(filterBy) {
     let notes = _loadFromStorage()
     if(!notes) {
         notes = getNotes()
         _saveToStorage(notes)
     }
 
+    if (filterBy) {
+        notes = notes.filter(note => (
+            note.info.title.includes(filterBy) ||
+            note.label.includes(filterBy)
+        ))
+    }
+
     return Promise.resolve(notes)
 }
 
+function changeNoteColor(noteId,color) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note=>note.id === noteId)
+    note.style.backgroundColor = `${color}`
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
 

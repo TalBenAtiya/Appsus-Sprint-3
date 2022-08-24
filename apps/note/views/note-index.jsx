@@ -5,7 +5,8 @@ const  { Link } = ReactRouterDOM
 export class NoteIndex extends React.Component {
 
     state = {
-        notes:[]
+        notes:[],
+        filterBy:null,
     }
 
     componentDidMount() {
@@ -17,13 +18,26 @@ export class NoteIndex extends React.Component {
             .then((notes) => this.setState({ notes }))
     }
 
-    render() {
+    onChangeBackgroundColor = (noteId,color) => {
+        console.log('changing')
+        noteService.changeNoteColor(noteId,color)
+        .then((notes)=> this.setState({notes}))
+    }
 
+    // onSetFilter = () => {
+    //     this.setState({ filterBy }, () => {
+    //         this.loadNotes()
+    //     })
+    // }
+
+    render() {
         const {notes} = this.state
+        const {onChangeBackgroundColor} = this
 
         return <section className="note-index">
             {/* <AddNote onSetNote={this.onSetAddNote}/> */}
-            <NoteList notes={notes}/>
+            {/* <NoteFilter onSetFilter={onSetFilter}/> */}
+            <NoteList notes={notes} onChangeBackgroundColor={onChangeBackgroundColor}/>
            
         </section>
 
