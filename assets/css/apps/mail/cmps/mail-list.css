@@ -3,5 +3,6 @@
     flex-direction: column;
     background-color: white;
     margin-top: 50px;
-    width: 75%;
+    width: 100%;
+    height: fit-content;
 }

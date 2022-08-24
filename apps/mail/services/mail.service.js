@@ -4,6 +4,7 @@ import { storageService } from "../../../services/storage.service.js"
 export const mailService = {
     query,
     getById,
+    mailRead,
 }
 
 const KEY = 'emailsDB'
@@ -51,6 +52,14 @@ function query() {
     }
 
     return Promise.resolve(mails)
+}
+
+function mailRead(mailId){
+    let mails = _loadFromStorage()
+    let mail = mails.find(mail => mail.id === mailId)
+    mail.isRead = true
+    _saveToStorage(mails)
+    return Promise.resolve()
 }
 
 
