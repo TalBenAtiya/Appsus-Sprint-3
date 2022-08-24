@@ -1,7 +1,8 @@
-import { utilService } from "../../../services/util.service.js";
-import { storageService } from "../../../services/storage.service";
+import { utilService } from "../../../services/util.service.js"
+import { storageService } from "../../../services/storage.service.js"
 
 export const noteService = {
+    query,
     getNotes,
 }
 
@@ -54,6 +55,14 @@ function _loadFromStorage() {
     return storageService.loadFromStorage(KEY)
 }
 
+function query() {
+    let notes = _loadFromStorage()
+    if(!notes) {
+        notes = getNotes()
+        _saveToStorage(notes)
+    }
 
+    return Promise.resolve(notes)
+}
 
 
