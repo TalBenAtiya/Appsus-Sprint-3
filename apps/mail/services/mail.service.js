@@ -8,6 +8,7 @@ export const mailService = {
 const KEY = 'emailsDB'
 
 const gEmails = [{
+    sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
     subject: 'Miss you!',
     body: 'Would love to catch up sometimes',
@@ -16,6 +17,7 @@ const gEmails = [{
     to: 'momo@momo.com'
 },
 {
+    sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
     subject: 'Work Related',
     body: 'Hello there',
@@ -24,6 +26,7 @@ const gEmails = [{
     to: 'momo@momo.com'
 },
 {
+    sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
     subject: 'Family',
     body: 'Lorem ipsum',

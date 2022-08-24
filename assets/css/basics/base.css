@@ -1,10 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 :root {
     --clr-default: rgb(240, 240, 240);
 }
 
 html {
-    font-family: lato-thin;
-    font-weight: 600;
+    font-family: roboto-light;
 }
 
 body {
