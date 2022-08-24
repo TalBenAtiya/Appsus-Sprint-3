@@ -4,6 +4,26 @@
 }
 
 @font-face {
-    font-family: lato-thin;
-    src: url("../../fonts/Lato-Thin.ttf");
+    font-family: roboto-thin;
+    src: url("../../fonts/Roboto-Thin.ttf");
+}
+
+@font-face {
+    font-family: roboto-light;
+    src: url("../../fonts/Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: roboto-regular;
+    src: url("../../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: roboto-medium;
+    src: url("../../fonts/Roboto-Medium.ttf");
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src: url("../../fonts/Roboto-Bold.ttf");
 }
