@@ -9,37 +9,42 @@ export const noteService = {
 const KEY = 'notesDB'
 const gNotes = [
     {
-        mainTitle:"Fullstack",
         id: "n101",
         type: "note-txt",
         isPinned: true,
         info: {
+            title:'Fullstack',
             txt: "Fullstack Me Baby!"
-        }
+        },
+        style: {
+            backgroundColor: '#fff'
+        },
+        label: ["Get my stuff together"],
     },
     {
-        mainTitle:"Friend Bobi",
         id: "n102",
         type: "note-img",
         info: {
-            url: "http://some-img/me",
-            title: "Bobi and Me"
+            url: "../../../assets/img/note-img1.jpg",
+            title: "Bobi and Me",
+            txt:''
         },
         style: {
             backgroundColor: "#00d"
-        }
+        },
+        label: ["Get my stuff together"],
     },
     {
-        mainTitle:"Todos",
         id: "n103",
         type: "note-todos",
         info: {
-            label: "Get my stuff together",
+            title:'my todos',
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
+                { txt: "Driving liscence", doneAt: null ,id:utilService.makeId()},
+                { txt: "Coding power", doneAt: 187111111,id:utilService.makeId() }
             ]
-        }
+        },
+        label: ["Get my stuff together"],
     }
 ]
 
