@@ -6,6 +6,7 @@
     background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
+    cursor: default;
 }
 
 .note:hover {
@@ -33,4 +34,10 @@
 
   .note-img:hover {
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  .todo-container {
+    display: flex;
+    column-gap: 10px;
+    list-style-type:none;
   }

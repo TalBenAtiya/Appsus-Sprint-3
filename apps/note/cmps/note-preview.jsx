@@ -1,41 +1,33 @@
 import { utilService } from "../../../services/util.service.js"
-
-
-const { Link } = ReactRouterDOM
+import { NoteEdit } from "./note-edit.jsx"
+import { NoteTxt } from "../../../assets/css/apps/note/cmps/note-txt.jsx"
+import { NoteImg } from "../../../assets/css/apps/note/cmps/note-img.jsx"
+import { NoteTodos } from "../../../assets/css/apps/note/cmps/note-todos.jsx"
+// const { Link } = ReactRouterDOM
 export function NotePreview({ note }) {
 
     function noteTemplate() {
-        if (note.type === 'note-txt') {
-            return <div className="note">
-                <h3 className="note-title">{note.info.title}</h3>
-                <p className="note-txt">{note.info.txt}</p>
+        switch (note.type) {
+            case 'note-txt':
+                return <div className="note">
+                    <NoteTxt note={note}/>
+                    <NoteEdit />
+                </div>
+            case 'note-img':
+                return <div className="note-img">
+                <NoteImg note={note}/>
+                <NoteEdit />
             </div>
-        }
-        if (note.type === 'note-img') {
-            return <div className="note-img">
-                <div><img src={note.info.url} alt="" /></div>
-                {note.info.title !== '' && <h3 className="note-title">{note.info.title}</h3>}
-                {note.info.txt !== '' && <p className="note-txt">{note.info.txt}</p>}
-            </div>
-        }
-        if(note.type === 'note-todos') {
-            return <div className="note">
-                <h3 className="note-title">{note.info.title}</h3>
-                <ul className="todos-list">
-                    {note.info.todos.map(todo=>
-                    <div key={todo.id} className="todo-container"><input type="checkbox" /><li >{todo.txt}</li></div>
-                    )}
-                </ul>
+            case 'note-todos':
+                return <div className="note">
+                <NoteTodos/>
+                <NoteEdit />
             </div>
         }
 
     }
 
     return <article className="note-preview, main-layout">
-        <Link to={"/note/" + note.id}>
-            {noteTemplate()}
-        </Link>
+        {noteTemplate()}
     </article>
-
 }
- 

@@ -20,13 +20,14 @@ export class NoteIndex extends React.Component {
     render() {
 
         const {notes} = this.state
-        console.log()
 
         return <section className="note-index">
             {/* <AddNote onSetNote={this.onSetAddNote}/> */}
             <NoteList notes={notes}/>
+           
         </section>
 
         
     }
 }
+
