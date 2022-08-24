@@ -5,24 +5,41 @@ import { MailOptions } from "../cmps/mail-options.jsx"
 export class MailIndex extends React.Component {
 
     state = {
-        emails: []
+        mails: []
     }
 
     componentDidMount() {
         this.loadMails()
     }
 
-    loadMails = () => {
-        mailService.query().then(emails => this.setState({emails}))
+    setMailAsRead = (mailId) => {
+        mailService.mailRead(mailId)
+        .then(mails => this.setState({mails}))
     }
 
+    loadMails = () => {
+        mailService.query().then(mails => this.setState({mails}))
+    }
+
+    importantToggle = (mailId) => {
+        mailService.setImportant(mailId).then(mails => {
+            this.setState({mails})}
+            )
+    }
+
+    starToggle = (mailId) => {
+        mailService.setMailStar(mailId).then(mails => {
+            this.setState({mails})}
+            )
+        }
+
     render() {
-        const {emails} = this.state
-        if (!emails) return <span></span>
+        const { mails } = this.state
+        if (!mails) return <span></span>
 
         return <section className="mail-index main-layout">
             <MailOptions/>
-            <MailList emails={emails}/>
+            <MailList mails={mails} starToggle={this.starToggle} setMailAsRead={this.setMailAsRead} importantToggle={this.importantToggle}/>
         </section>
         
     }

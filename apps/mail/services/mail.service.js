@@ -5,6 +5,8 @@ export const mailService = {
     query,
     getById,
     mailRead,
+    setMailStar,
+    setImportant,
 }
 
 const KEY = 'emailsDB'
@@ -16,7 +18,8 @@ const gMails = [{
     body:  'Cant wait to see you!',
     isRead: false,
     sentAt: 1551133930594,
-    to: 'momo@momo.com'
+    to: 'momo@momo.com',
+    labels: []
 },
 {
     sentFrom: 'Tal Ben Atiya',
@@ -25,7 +28,8 @@ const gMails = [{
     body: 'Finish that project',
     isRead: false,
     sentAt: 1551133930594,
-    to: 'momo@momo.com'
+    to: 'momo@momo.com',
+    labels: []
 },
 {
     sentFrom: 'Tal Ben Atiya',
@@ -34,7 +38,8 @@ const gMails = [{
     body: 'Dinner at...',
     isRead: false,
     sentAt: 1551133930594,
-    to: 'momo@momo.com'
+    to: 'momo@momo.com',
+    labels: []
 },
 ]
 
@@ -59,7 +64,7 @@ function mailRead(mailId){
     let mail = mails.find(mail => mail.id === mailId)
     mail.isRead = true
     _saveToStorage(mails)
-    return Promise.resolve()
+    return Promise.resolve(mails)
 }
 
 
@@ -68,6 +73,35 @@ function getById(id) {
     const mails = _loadFromStorage()
     const mail = mails.find(mail => mail.id === id)
     return Promise.resolve(mail)
+}
+
+function setMailStar(mailId) {
+    let mails = _loadFromStorage()
+    let mail = mails.find(mail => mail.id === mailId)
+    if (!mail.labels.includes('starred')) {
+        mail.labels.push('starred')
+    }
+    else {
+        const labelIdx = mail.labels.findIndex(label => label === 'starred')
+        mail.labels.splice(labelIdx, 1)
+    }
+    _saveToStorage(mails)
+    return Promise.resolve(mails)
+}
+
+
+function setImportant(mailId) {
+    let mails = _loadFromStorage()
+    let mail = mails.find(mail => mail.id === mailId)
+    if (!mail.labels.includes('important')) {
+        mail.labels.push('important')
+    }
+    else {
+        const labelIdx = mail.labels.findIndex(label => label === 'important')
+        mail.labels.splice(labelIdx, 1)
+    }
+    _saveToStorage(mails)
+    return Promise.resolve(mails)
 }
 
 function _saveToStorage(books) {

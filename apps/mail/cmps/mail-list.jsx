@@ -1,10 +1,10 @@
 import { MailPreview } from "./mail-preview.jsx"
 
-export function MailList({ emails }) {
+export function MailList({ mails , starToggle, setMailAsRead,  importantToggle}) {
 
     return <section className="mail-list">
-                {emails.map(mail => <MailPreview
-                    key={mail.id} mail={mail} />)}
+                {mails.map(mail => <MailPreview
+                    key={mail.id} mail={mail} starToggle={starToggle} setMailAsRead={setMailAsRead} importantToggle={importantToggle} />)}
     </section>
 }
 
