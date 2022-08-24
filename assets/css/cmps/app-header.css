@@ -21,17 +21,17 @@ nav a {
 }
 
 nav a:hover {
-    color: rgb(110, 71, 238);
-    box-shadow: inset 0px -2px 0px 0px rgb(110, 71, 238);
+    color: var(--clr-main);
+    box-shadow: inset 0px -2px 0px 0px var(--clr-main);
 }
 
 nav a.active {
-    color: rgb(138, 71, 238);
-    box-shadow: inset 0px -2px 0px 0px rgb(110, 71, 238);
+    color: var(--clr-main);
+    box-shadow: inset 0px -2px 0px 0px var(--clr-main);
 }
 
 .app-header h3 {
-    color: rgb(110, 71, 238);
+    color: var(--clr-main);
     font-family: oleo;
     font-size: 40px;
 }

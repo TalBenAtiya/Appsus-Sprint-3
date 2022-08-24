@@ -3,15 +3,16 @@ import { storageService } from "../../../services/storage.service.js"
 
 export const mailService = {
     query,
+    getById,
 }
 
 const KEY = 'emailsDB'
 
-const gEmails = [{
+const gMails = [{
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
+    subject: 'Wating!',
+    body:  'Cant wait to see you!',
     isRead: false,
     sentAt: 1551133930594,
     to: 'momo@momo.com'
@@ -20,7 +21,7 @@ const gEmails = [{
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
     subject: 'Work Related',
-    body: 'Hello there',
+    body: 'Finish that project',
     isRead: false,
     sentAt: 1551133930594,
     to: 'momo@momo.com'
@@ -29,7 +30,7 @@ const gEmails = [{
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
     subject: 'Family',
-    body: 'Lorem ipsum',
+    body: 'Dinner at...',
     isRead: false,
     sentAt: 1551133930594,
     to: 'momo@momo.com'
@@ -43,13 +44,21 @@ const loggedinUser = {
 
 
 function query() {
-    let emails = _loadFromStorage()
-    if (!emails) {
-        emails = gEmails
-        _saveToStorage(emails)
+    let mails = _loadFromStorage()
+    if (!mails) {
+        mails = gMails
+        _saveToStorage(mails)
     }
 
-    return Promise.resolve(emails)
+    return Promise.resolve(mails)
+}
+
+
+function getById(id) {
+    if (!id) return Promise.resolve(null)
+    const mails = _loadFromStorage()
+    const mail = mails.find(mail => mail.id === id)
+    return Promise.resolve(mail)
 }
 
 function _saveToStorage(books) {

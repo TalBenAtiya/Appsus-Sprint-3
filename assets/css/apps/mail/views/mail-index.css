@@ -1,0 +1,30 @@
+.mail-index {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-options div {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 1em 10px;
+
+}
+
+.user-options {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin-top: 50px;
+}
+
+
+.user-options img {
+    width: 20px;
+    margin-inline-end: 10px;
+}
+
+
+.user-options div:hover {
+    background-color: white;
+}

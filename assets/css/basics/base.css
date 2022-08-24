@@ -4,6 +4,7 @@
 
 :root {
     --clr-default: rgb(240, 240, 240);
+    --clr-main: rgb(110, 71, 238);
 }
 
 html {
