@@ -1,8 +1,8 @@
 import { utilService } from "../../../services/util.service.js"
 import { NoteEdit } from "./note-edit.jsx"
-import { NoteTxt } from "../../../assets/css/apps/note/cmps/note-txt.jsx"
-import { NoteImg } from "../../../assets/css/apps/note/cmps/note-img.jsx"
-import { NoteTodos } from "../../../assets/css/apps/note/cmps/note-todos.jsx"
+import { NoteTxt } from "./note-txt.jsx"
+import { NoteImg } from "./note-img.jsx"
+import { NoteTodos } from "./note-todos.jsx"
 // const { Link } = ReactRouterDOM
 export function NotePreview({ note }) {
 
@@ -20,7 +20,7 @@ export function NotePreview({ note }) {
             </div>
             case 'note-todos':
                 return <div className="note">
-                <NoteTodos/>
+                <NoteTodos note={note}/>
                 <NoteEdit />
             </div>
         }
