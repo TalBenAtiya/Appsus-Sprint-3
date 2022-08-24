@@ -11,9 +11,9 @@
 
 /* Views */
 @import './views/home.css';
-
 @import './apps/note/views/note-app.css';
-
+@import '../css/apps/mail/views/mail-index.css';
+@import '../css/apps/mail/views/mail-details.css';
 
 /* Cmps */
 
@@ -26,6 +26,5 @@
 
 /* Apps */
 
-@import '../css/apps/mail/views/mail-index.css';
 @import '../css/apps/mail/cmps/mail-list.css';
 @import '../css/apps/mail/cmps/mail-preview.css';

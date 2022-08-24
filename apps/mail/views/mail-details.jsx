@@ -1,4 +1,5 @@
 import { mailService } from "../services/mail.service.js"
+import { MailOptions } from "../cmps/mail-options.jsx"
 
 export class MailDetails extends React.Component {
 
@@ -15,19 +16,31 @@ export class MailDetails extends React.Component {
         mailService.getById(mailId)
             .then((mail) => {
                 if (!mail) return this.onGoBack()
-                this.setState({ mail })
+                mailService.mailRead(mailId).then(() =>
+                this.setState({mail: {...mail , isRead: true }}))
             })
+    }
+
+    onGoBack = () => {
+        this.props.history.push('/mail')
     }
 
     render() {
         const { mail } = this.state
         if (!mail) return <span></span>
-    return <section className="mail-details main-layout">
+        
+    return<section className="mail-details-container main-layout">
+        <MailOptions/>
+    <section className="mail-details">
+        <h5>Date:{mail.sentAt}</h5>
+        Subject:
         <h2>{mail.subject}</h2>
-        <h4>From: {mail.sentFrom}</h4>
-        <h5>{mail.sentAt}</h5>
+        From:
+        <h4>{mail.sentFrom}</h4>
         <article>{mail.body}</article>
+        <button>Replay →</button>
     </section>
+    </section> 
     }
 
 }

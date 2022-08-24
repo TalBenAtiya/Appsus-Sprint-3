@@ -8,7 +8,18 @@
     display: flex;
     align-items: center;
     padding: 1em 10px;
+    border-radius: 2em;
+    margin-inline-end: 20px;
+    margin-bottom: 5px;
 
+}
+
+.user-options div:focus {
+    background-color: var(--clr-main);
+}
+
+.user-options div:focus:hover {
+    background-color: var(--clr-main);
 }
 
 .user-options {

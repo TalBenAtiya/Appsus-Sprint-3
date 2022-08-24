@@ -1,0 +1,41 @@
+.mail-details-container { 
+    display: flex;
+}
+
+.mail-details {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 75%;
+    background-color: white;
+    padding: 20px;
+    width: 100%;
+}
+
+.mail-details h2 {
+    margin-bottom: 30px;
+}
+.mail-details h5 {
+    text-align: end;
+}
+
+.mail-details article {
+    background-color: var(--clr-default);
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.mail-details button {
+    width: fit-content;
+    background-color: white;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 2em;
+    margin-top: 20px;
+    align-self: flex-end;
+    border: 1px solid black;
+}
+
+.mail-details button:hover {
+    background-color: var(--clr-default);
+}
