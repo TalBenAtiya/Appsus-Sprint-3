@@ -1,47 +1,48 @@
 .note {
-    position: relative;
-    padding: 20px;
-    border: 1px solid transparent;
-    border-color: #e0e0e0;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: default;
+  position: relative;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-color: #e0e0e0;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: default;
 }
 
 .note:hover {
-    animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 @keyframes shadow-drop-center {
-    0% {
-              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    }
-    100% {
-              box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.35);
-    }
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 
-
-  .note-img {
-    position: relative;
-    border: 1px solid transparent;
-    border-color: #e0e0e0;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
+  100% {
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.35);
   }
+}
 
-  .note-img:hover {
-    animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  }
 
-  .todo-container {
-    display: flex;
-    column-gap: 10px;
-    list-style-type:none;
-  }
+.note-img {
+  position: relative;
+  border: 1px solid transparent;
+  border-color: #e0e0e0;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-  .note-preview {
-    margin-bottom: 10px;
-  }
+.note-img:hover {
+  animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.todo-container {
+  display: flex;
+  column-gap: 10px;
+  list-style-type: none;
+}
+
+.note-preview {
+  margin-bottom: 10px;
+}

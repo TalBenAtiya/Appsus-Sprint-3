@@ -8,6 +8,8 @@ export const noteService = {
     onchangeTxt,
     onchangeTodoTxt,
     todoIsDone,
+    createNoteTxt,
+    onRemoveNote,
 }
 
 const KEY = 'notesDB'
@@ -17,7 +19,7 @@ const gNotes = [
         type: "note-txt",
         isPinned: true,
         info: {
-            title:'Fullstack',
+            title: 'Fullstack',
             txt: "Fullstack Me Baby!"
         },
         style: {
@@ -31,7 +33,7 @@ const gNotes = [
         info: {
             url: "assets/img/note-img1.jpg",
             title: "Bobi and Me",
-            txt:''
+            txt: ''
         },
         style: {
             backgroundColor: "#fff"
@@ -42,10 +44,10 @@ const gNotes = [
         id: "n103",
         type: "note-todos",
         info: {
-            title:'my todos',
+            title: 'my todos',
             todos: [
-                { txt: "Driving liscence", isDone: true ,id:utilService.makeId()},
-                { txt: "Coding power", isDone: false,id:utilService.makeId() }
+                { txt: "Driving liscence", isDone: true, id: utilService.makeId() },
+                { txt: "Coding power", isDone: false, id: utilService.makeId() }
             ]
         },
         style: {
@@ -59,7 +61,7 @@ const gNotes = [
         info: {
             url: "https://www.youtube.com/embed/FWy_LbhHtug",
             title: "coding academy",
-            txt:''
+            txt: ''
         },
         style: {
             backgroundColor: "#fff"
@@ -69,7 +71,7 @@ const gNotes = [
 
 ]
 
-function getNotes () {
+function getNotes() {
     return gNotes
 }
 
@@ -83,7 +85,7 @@ function _loadFromStorage() {
 
 function query(filterBy) {
     let notes = _loadFromStorage()
-    if(!notes) {
+    if (!notes) {
         notes = getNotes()
         _saveToStorage(notes)
     }
@@ -98,15 +100,15 @@ function query(filterBy) {
     return Promise.resolve(notes)
 }
 
-function changeNoteColor(noteId,color) {
+function changeNoteColor(noteId, color) {
     const notes = _loadFromStorage()
-    let note = notes.find(note=>note.id === noteId)
+    let note = notes.find(note => note.id === noteId)
     note.style.backgroundColor = `${color}`
     _saveToStorage(notes)
     return Promise.resolve(notes)
 }
 
-function onchangeTxt (noteId,txt,property) {
+function onchangeTxt(noteId, txt, property) {
     const notes = _loadFromStorage()
     let note = notes.find(note => note.id === noteId)
     note.info[property] = txt
@@ -114,28 +116,56 @@ function onchangeTxt (noteId,txt,property) {
     return Promise.resolve(notes)
 }
 
-function onchangeTodoTxt (noteId,txt,todoId) {
+function onchangeTodoTxt(noteId, txt, todoId) {
     const notes = _loadFromStorage()
     let note = notes.find(note => note.id === noteId)
-    let todo = note.info.todos.find(todo => todo.id ===todoId)
+    let todo = note.info.todos.find(todo => todo.id === todoId)
     todo.txt = txt
     _saveToStorage(notes)
     return Promise.resolve(notes)
 }
 
-function todoIsDone(noteId,todoId) {
+function todoIsDone(noteId, todoId) {
     const notes = _loadFromStorage()
     let note = notes.find(note => note.id === noteId)
-    let todo = note.info.todos.find(todo => todo.id ===todoId)
-    todo.isDone=!todo.isDone
+    let todo = note.info.todos.find(todo => todo.id === todoId)
+    todo.isDone = !todo.isDone
     _saveToStorage(notes)
     return Promise.resolve(notes)
 }
 
-function createNote() {
-    
+function createNoteTxt(property, txt) {
+    const notes = _loadFromStorage()
+    let note = {
+        id: utilService.makeId(),
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            title: property === 'title' ? txt : '',
+            txt: property === 'txt' ? txt : ''
+        },
+        style: {
+            backgroundColor: '#fff'
+        },
+        label: [],
+    }
+    console.log(note)
+    notes.push(note)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
+function onRemoveNote(noteId) {
+    console.log(noteId)
+    const notes = _loadFromStorage()
+    let idx = notes.findIndex(note => note.id === noteId)
+    console.log('idx',idx)
+    notes.splice(idx,1)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
 }
 
 function addLabel() {
 
 }
+

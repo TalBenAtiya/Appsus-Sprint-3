@@ -1,11 +1,13 @@
-export function AddingNoteTxt() {
+export function AddingNoteTxt({createNoteTxt,created}) {
 
-    function changeTxt({target},property) {
+    function createNote({target},property) {
         // onchangeTxt(note.id,target.innerText,property)
+        createNoteTxt(property,target.innerText)
+        created(true,false)
     }
 
     return <section className="adding-note-txt">
-        <h3 onBlur={(ev) => changeTxt(ev, 'title')} role='textbox' aria-multiline="true" contentEditable="true" className="note-title">Title</h3>
-        <p onBlur={(ev) => changeTxt(ev, 'txt')} role='textbox' aria-multiline="true" contentEditable="true" className="note-txt">Take a note...</p>
+        <h3 onBlur={(ev) => createNote(ev, 'title')} dataText="Title" role='textbox' aria-multiline="true" contentEditable="true" className="note-title"></h3>
+        <p  onBlur={(ev) => createNote(ev, 'txt')} dataText="Take a note…" role='textbox' aria-multiline="true" contentEditable="true" className="note-txt"></p>
     </section>
 }
