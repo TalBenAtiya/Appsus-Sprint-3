@@ -8,7 +8,7 @@ export function NoteEdit({ noteId, onChangeBackgroundColor }) {
 
     return <section className="note-edit">
         <div className="input-color-container">
-            <img src='../../../assets/svg/background-color-icon.svg' alt="" />
+            <img src='assets/svg/background-color-icon.svg' alt="" />
             <input onChange={(ev) => changeColor(ev)} className="input-background-color" type="color" />
         </div>
     </section>

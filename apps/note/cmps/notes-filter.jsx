@@ -1,24 +1,17 @@
-export class NoteFilter extends React.Component {
-    state = {
+export function NoteFilter({ onSetFilter }) {
 
+    function onFilter({ target }) {
+        console.log(target.value)
+        onSetFilter(target.value)
     }
 
-    // onFilter = (ev) => {
-    //     ev.preventDefault()
-    //     this.props.onSetFilter(this.state.filterBy)
-    // }
-
-    // render() {
-    //     return <section className="notes-filter">
-    //         <form onSubmit={this.onFilter}>
-    //             <label htmlFor="search-notes"></label>
-    //             <input
-    //                 type="text"
-    //                 placeholder="Search by title/label"
-    //                 name="search"
-    //                 value={search}
-    //                 onChange={this.handleChange}
-    //             /></form>
-    //     </section>
-    // }
+    return <section className="notes-filter">
+        <input
+            className="search-notes"
+            type="text"
+            placeholder="Search by title/label"
+            name="search"
+            onChange={(ev) => onFilter(ev)}
+        />
+    </section>
 }

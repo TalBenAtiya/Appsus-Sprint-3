@@ -1,7 +1,6 @@
 .note-list {
     column-count: 4;
-    /* gap: 10px; */
-    /* margin: 5px; */
+    column-width: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
-}
+}   
