@@ -7,6 +7,7 @@ export const mailService = {
     mailRead,
     setMailStar,
     setImportant,
+    sendMail,
 }
 
 const KEY = 'emailsDB'
@@ -85,6 +86,13 @@ function setMailStar(mailId) {
         const labelIdx = mail.labels.findIndex(label => label === 'starred')
         mail.labels.splice(labelIdx, 1)
     }
+    _saveToStorage(mails)
+    return Promise.resolve(mails)
+}
+
+function sendMail(mail) {
+    let mails = _loadFromStorage()
+    mails.unshift(mail)
     _saveToStorage(mails)
     return Promise.resolve(mails)
 }

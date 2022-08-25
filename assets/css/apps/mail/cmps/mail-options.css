@@ -1,0 +1,39 @@
+
+.user-options div {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 1em 10px;
+    border-radius: 2em;
+    margin-inline-end: 20px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+
+}
+
+.user-options div:focus {
+    background-color: var(--clr-main);
+}
+
+.user-options div:focus:hover {
+    background-color: var(--clr-main);
+}
+
+.user-options {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin-top: 50px;
+}
+
+
+.user-options img {
+    width: 20px;
+    margin-inline-end: 10px;
+}
+
+
+.user-options div:hover {
+    background-color: white;
+}
+
