@@ -5,7 +5,7 @@ import { NoteTodos } from "./note-todos.jsx"
 import {NoteEdit} from "./note-edit.jsx"
 import { NoteVideo } from "./note-video.jsx"
 // const { Link } = ReactRouterDOM
-export function NotePreview({ note , onChangeBackgroundColor,onchangeTxt,onchangeTodoTxt}) {
+export function NotePreview({ note , onChangeBackgroundColor,onchangeTxt,onchangeTodoTxt,onTodoIsDone}) {
 
     function noteTemplate() {
         switch (note.type) {
@@ -21,7 +21,7 @@ export function NotePreview({ note , onChangeBackgroundColor,onchangeTxt,onchang
             </div>
             case 'note-todos':
                 return <div style={{backgroundColor:note.style.backgroundColor}} className="note">
-                <NoteTodos note={note} onchangeTxt={onchangeTxt} onchangeTodoTxt={onchangeTodoTxt}/>
+                <NoteTodos note={note} onchangeTxt={onchangeTxt} onchangeTodoTxt={onchangeTodoTxt} onTodoIsDone={onTodoIsDone}/>
                 <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor}/>
             </div>
             case 'note-video':

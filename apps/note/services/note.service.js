@@ -7,6 +7,7 @@ export const noteService = {
     changeNoteColor,
     onchangeTxt,
     onchangeTodoTxt,
+    todoIsDone,
 }
 
 const KEY = 'notesDB'
@@ -43,8 +44,8 @@ const gNotes = [
         info: {
             title:'my todos',
             todos: [
-                { txt: "Driving liscence", doneAt: null ,id:utilService.makeId()},
-                { txt: "Coding power", doneAt: 187111111,id:utilService.makeId() }
+                { txt: "Driving liscence", isDone: true ,id:utilService.makeId()},
+                { txt: "Coding power", isDone: false,id:utilService.makeId() }
             ]
         },
         style: {
@@ -122,8 +123,17 @@ function onchangeTodoTxt (noteId,txt,todoId) {
     return Promise.resolve(notes)
 }
 
-function createNote() {
+function todoIsDone(noteId,todoId) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    let todo = note.info.todos.find(todo => todo.id ===todoId)
+    todo.isDone=!todo.isDone
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
 
+function createNote() {
+    
 }
 
 function addLabel() {

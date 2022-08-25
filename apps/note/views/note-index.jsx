@@ -1,13 +1,13 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteFilter } from "../cmps/notes-filter.jsx"
-const  { Link } = ReactRouterDOM
+import { NoteAdd } from "../cmps/note-add.jsx"
 
 export class NoteIndex extends React.Component {
 
     state = {
-        notes:[],
-        filterBy:null,
+        notes: [],
+        filterBy: null,
     }
 
     componentDidMount() {
@@ -19,9 +19,9 @@ export class NoteIndex extends React.Component {
             .then((notes) => this.setState({ notes }))
     }
 
-    onChangeBackgroundColor = (noteId,color) => {
-        noteService.changeNoteColor(noteId,color)
-        .then((notes)=> this.setState({notes}))
+    onChangeBackgroundColor = (noteId, color) => {
+        noteService.changeNoteColor(noteId, color)
+            .then((notes) => this.setState({ notes }))
     }
 
     onSetFilter = (filterBy) => {
@@ -30,27 +30,40 @@ export class NoteIndex extends React.Component {
         })
     }
 
-    onchangeTxt = (noteId,txt,property)=>{
-        noteService.onchangeTxt(noteId,txt,property)
-        .then((notes)=> this.setState({notes}))
+    onchangeTxt = (noteId, txt, property) => {
+        noteService.onchangeTxt(noteId, txt, property)
+            .then((notes) => this.setState({ notes }))
     }
 
-    onchangeTodoTxt = (noteId,txt,todoId) => {
-        noteService.onchangeTodoTxt(noteId,txt,todoId)
-        .then((notes)=> this.setState({notes}))
+    onchangeTodoTxt = (noteId, txt, todoId) => {
+        noteService.onchangeTodoTxt(noteId, txt, todoId)
+            .then((notes) => this.setState({ notes }))
+    }
+
+    onTodoIsDone = (noteId, todoId) => {
+        noteService.todoIsDone(noteId, todoId)
+            .then((notes) => this.setState({ notes }))
     }
 
     render() {
-        const {notes} = this.state
-        const {onChangeBackgroundColor , onSetFilter , onchangeTxt,onchangeTodoTxt} = this
+        const { notes } = this.state
+        const { onChangeBackgroundColor, onSetFilter, onchangeTxt, onchangeTodoTxt, onTodoIsDone } = this
 
         return <section className="note-index main-layout">
             {/* <AddNote onSetNote={this.onSetAddNote}/> */}
-            <NoteFilter onSetFilter={onSetFilter}/>
-            <NoteList notes={notes} onChangeBackgroundColor={onChangeBackgroundColor} onchangeTxt={onchangeTxt} onchangeTodoTxt={onchangeTodoTxt}/>
+            <div className="filter-and-add-container">
+                <NoteFilter onSetFilter={onSetFilter} />
+                <NoteAdd />
+            </div>
+            <NoteList notes={notes}
+                onChangeBackgroundColor={onChangeBackgroundColor}
+                onchangeTxt={onchangeTxt}
+                onchangeTodoTxt={onchangeTodoTxt}
+                onTodoIsDone={onTodoIsDone}
+            />
         </section>
 
-        
+
     }
 }
 
