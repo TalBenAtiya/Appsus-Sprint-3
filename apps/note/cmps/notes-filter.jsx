@@ -1,7 +1,6 @@
 export function NoteFilter({ onSetFilter }) {
 
     function onFilter({ target }) {
-        console.log(target.value)
         onSetFilter(target.value)
     }
 
