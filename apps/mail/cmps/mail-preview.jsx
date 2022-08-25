@@ -4,14 +4,6 @@ const { Link } = ReactRouterDOM
 
 export function MailPreview({mail, starToggle, setMailAsRead, importantToggle}){
 
-  // state = {
-  //   mail: null
-  // }
-
-  // componentDidMount() {
-  //   this.setState({ mail: this.props.mail })
-  // }
-
   function onReadMail(mailId) {
     setMailAsRead(mailId)
   }
@@ -34,11 +26,13 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle}){
   }
 
   function setStarImg() {
+    if (!mail) return
     const imgStr = mail.labels.includes('starred') ? "../../assets/img/star1.png" : "../../assets/img/star2.png"
     return imgStr
   }
 
   function setImprotantImg() {
+    if (!mail) return
     const imgStr = mail.labels.includes('important') ? "../../../assets/img/right-arrow1.png" : "../../../assets/img/right-arrow2.png"
     return imgStr
   }

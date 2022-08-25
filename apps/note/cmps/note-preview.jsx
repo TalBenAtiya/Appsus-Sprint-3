@@ -30,7 +30,6 @@ export function NotePreview({ note , onChangeBackgroundColor,onchangeTxt,onchang
                 <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor}/>
             </div>
         }
-
     }
 
     return <article className="note-preview">
