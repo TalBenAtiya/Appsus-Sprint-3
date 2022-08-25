@@ -5,7 +5,7 @@
 
 
 .mail-index button img {
-    width: 20px;
+    width: 15px;
 }
 
 
@@ -26,81 +26,8 @@
     background-color: var(--clr-main);
     color: var(--clr-default);
 }
+
 .user-options .compose img{
     margin: 0;
 }
 
-.send-mail {
-    width:600px ;
-    flex-direction: column;
-    background-color: var(--clr-main);
-    position: fixed;
-    bottom: 10px;
-    left: 20%;
-}
-
-.send-mail div {
-    padding: 0.5em 5px;
-  
-}
-
-.send-mail input {
-    width: 100%;
-    border: 0;  
-}
-
-.send-mail .mail-text-area {
-    background-color: white;
-    padding-bottom: 0;
-}
-
-.mail-title {
-    padding: 3px, 0;
-    border-bottom: 1px solid var(--clr-default);
-    background-color: var(--clr-main);
-    justify-content: space-between;
-    align-items: center;
-    font-family: roboto-thin;
-    font-size: 15px;
-  
-}
-
-.mail-title span {
-    color: white;
-}
-
-.mail-title button {
-    background-color: var(--clr-main);
-    border: none;
-    color: white;
-}
-
-.send-to, .mail-subject {
-    border-bottom: 1px solid var(--clr-default);
-    background-color: white;
-}
-
-.send-mail .btns {
-    display: flex;
-    background-color: white;
-    flex-direction: row-reverse;
-    padding-bottom: 10px;
-    padding-inline-end: 10px;
-}
-
-.btns button {
-    background-color: var(--clr-main);
-    padding: 10px 20px;
-    border: 0;
-    color: white;
-    border-radius: 2em;
-}
-
-.mail-text-area {
-    min-height: 350px;
-    word-wrap: break-word;
-}
-
-.mail-text-area p {
-line-height: 25px;
-}
