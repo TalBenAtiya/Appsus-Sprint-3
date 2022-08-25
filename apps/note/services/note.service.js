@@ -5,6 +5,8 @@ export const noteService = {
     query,
     getNotes,
     changeNoteColor,
+    onchangeTxt,
+    onchangeTodoTxt,
 }
 
 const KEY = 'notesDB'
@@ -26,7 +28,7 @@ const gNotes = [
         id: "n102",
         type: "note-img",
         info: {
-            url: "../../../assets/img/note-img1.jpg",
+            url: "assets/img/note-img1.jpg",
             title: "Bobi and Me",
             txt:''
         },
@@ -49,7 +51,21 @@ const gNotes = [
             backgroundColor: "#fff"
         },
         label: ["Get my stuff together"],
-    }
+    },
+    {
+        id: "n104",
+        type: "note-video",
+        info: {
+            url: "https://www.youtube.com/embed/FWy_LbhHtug",
+            title: "coding academy",
+            txt:''
+        },
+        style: {
+            backgroundColor: "#fff"
+        },
+        label: ["yaron is the best"],
+    },
+
 ]
 
 function getNotes () {
@@ -73,8 +89,8 @@ function query(filterBy) {
 
     if (filterBy) {
         notes = notes.filter(note => (
-            note.info.title.includes(filterBy) ||
-            note.label.includes(filterBy)
+            note.info.title.toLowerCase().includes(filterBy.toLowerCase()) ||
+            note.label.includes(filterBy.toLowerCase())
         ))
     }
 
@@ -89,3 +105,27 @@ function changeNoteColor(noteId,color) {
     return Promise.resolve(notes)
 }
 
+function onchangeTxt (noteId,txt,property) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    note.info[property] = txt
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
+function onchangeTodoTxt (noteId,txt,todoId) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    let todo = note.info.todos.find(todo => todo.id ===todoId)
+    todo.txt = txt
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
+function createNote() {
+
+}
+
+function addLabel() {
+
+}

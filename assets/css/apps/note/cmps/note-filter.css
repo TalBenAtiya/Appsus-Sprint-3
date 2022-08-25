@@ -1,0 +1,16 @@
+.search-notes {
+    width: 300px;
+    height: 30px;
+    border-radius: 8px;
+    border-color: #e0e0e0;
+    background-color: #fff;
+    border: 1px solid transparent;
+    cursor: pointer;
+    animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    margin-top: 10px;
+}
+
+.notes-filter {
+    display: flex;
+    justify-content: center;
+}
