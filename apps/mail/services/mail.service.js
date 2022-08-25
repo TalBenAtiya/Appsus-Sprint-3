@@ -8,6 +8,7 @@ export const mailService = {
     setMailStar,
     setImportant,
     sendMail,
+    sendToTrash,
 }
 
 const KEY = 'emailsDB'
@@ -16,9 +17,9 @@ const gMails = [{
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
     subject: 'Wating!',
-    body:  'Cant wait to see you!',
+    body: 'Cant wait to see you!',
     isRead: false,
-    sentAt: 1551133930594,
+    sentAt: utilService.getDate(),
     to: 'momo@momo.com',
     labels: []
 },
@@ -28,7 +29,7 @@ const gMails = [{
     subject: 'Work Related',
     body: 'Finish that project',
     isRead: false,
-    sentAt: 1551133930594,
+    sentAt: utilService.getDate(),
     to: 'momo@momo.com',
     labels: []
 },
@@ -38,29 +39,205 @@ const gMails = [{
     subject: 'Family',
     body: 'Dinner at...',
     isRead: false,
-    sentAt: 1551133930594,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: 'Family',
+    body: 'Dinner at...',
+    isRead: false,
+    sentAt: utilService.getDate(),
     to: 'momo@momo.com',
     labels: []
 },
 ]
 
 const loggedinUser = {
-    email: 'user@appsus.com',
+    email: 'momo@momo.com',
     fullname: 'Mahatma Appsus'
 }
 
 
-function query() {
+function query(filterBy = 'inbox', searchBy = '') {
     let mails = _loadFromStorage()
     if (!mails) {
         mails = gMails
         _saveToStorage(mails)
     }
 
-    return Promise.resolve(mails)
+    if (filterBy === 'inbox') {
+        mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.labels.includes('trash'))
+        if (!mails || mails.length === 0) return Promise.resolve(mails)
+    }
+
+    else if (filterBy === 'starred') {
+        mails = mails.filter(mail => mail.labels.includes('starred'))
+        if (!mails || mails.length === 0) return Promise.resolve(mails)
+    }
+
+    else if (filterBy === 'important') {
+        mails = mails.filter(mail => mail.labels.includes('important'))
+        if (!mails || mails.length === 0) return Promise.resolve(mails)
+    }
+
+    else if (filterBy === 'sent') {
+        mails = mails.filter(mail => mail.to !== "momo@momo.com" && !mail.labels.includes('trash'))
+        if (!mails || mails.length === 0) return Promise.resolve(mails)
+    }
+
+    else if (filterBy === 'trash') {
+        mails = mails.filter(mail => mail.labels.includes('trash'))
+        if (!mails || mails.length === 0) return Promise.resolve(mails)
+    }
+
+    const filterMails = mails.filter(mail => mail.subject.toLowerCase().includes(searchBy.toLowerCase()) || mail.sentFrom.toLowerCase().includes(searchBy.toLowerCase()))
+    return Promise.resolve(filterMails)
 }
 
-function mailRead(mailId){
+function mailRead(mailId) {
     let mails = _loadFromStorage()
     let mail = mails.find(mail => mail.id === mailId)
     mail.isRead = true
@@ -76,6 +253,20 @@ function getById(id) {
     return Promise.resolve(mail)
 }
 
+function sendToTrash(mailId) {
+    let mails = _loadFromStorage()
+    let mail = mails.find(mail => mail.id === mailId)
+    if (!mail.labels.includes('trash')) {
+        mail.labels = ['trash']
+        console.log(mail);
+    } else {
+        const mailIdx = mails.findIndex(mail => mail.id === mailId) 
+        mails.splice(mailIdx, 1)
+    }
+    _saveToStorage(mails)
+    return Promise.resolve()
+}
+
 function setMailStar(mailId) {
     let mails = _loadFromStorage()
     let mail = mails.find(mail => mail.id === mailId)
@@ -87,14 +278,14 @@ function setMailStar(mailId) {
         mail.labels.splice(labelIdx, 1)
     }
     _saveToStorage(mails)
-    return Promise.resolve(mails)
+    return Promise.resolve()
 }
 
 function sendMail(mail) {
     let mails = _loadFromStorage()
     mails.unshift(mail)
     _saveToStorage(mails)
-    return Promise.resolve(mails)
+    return Promise.resolve()
 }
 
 

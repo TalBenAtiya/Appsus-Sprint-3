@@ -15,11 +15,11 @@
 
 .mail-preview button {
     border: 0;
-    background-color: white;
-    transition: 0.2s;
+    background-color: rgba(255, 255, 255, 0);
+    transition: 0.1s;
     padding: 0;
     margin-inline-end: 5px;
-    transition: 0.3s;
+    transition: 0.1s;
     border-radius: 2em;
     padding: 3px;
 }
@@ -48,9 +48,23 @@
 
 
 .mail-preview:hover {
-    transform: scale(1.000005);
-    box-shadow: 2px 1px 20px -11px rgba(0, 0, 0, 0.42);
+    animation: shadow-drop-2-center 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    background-color: rgb(249, 247, 251);
 }
+
+@keyframes shadow-drop-2-center {
+    0% {
+        transform: translateZ(0);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        transform: translateZ(50px);
+        box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+    }
+}
+
+
 
 .sent-from {
     width: 150px;
@@ -62,7 +76,8 @@
 }
 
 .mail-preview .sent-at {
-    width: 100px;
+    font-family: roboto-light;
+    width: 150px;
     flex-direction: row-reverse;
     font-size: 13px;
 
@@ -77,7 +92,7 @@
 }
 
 .mail-body {
-    flex: 1;
+    flex: 3;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

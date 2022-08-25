@@ -2,7 +2,7 @@ import { mailService } from "../services/mail.service.js"
 
 const { Link } = ReactRouterDOM
 
-export function MailPreview({mail, starToggle, setMailAsRead, importantToggle}){
+export function MailPreview({mail, starToggle, setMailAsRead, importantToggle, trashMail}){
 
   function onReadMail(mailId) {
     setMailAsRead(mailId)
@@ -37,6 +37,12 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle}){
     return imgStr
   }
 
+  function onTrashMail(ev ,mailId) {
+    ev.preventDefault()
+    ev.stopPropagation()
+    trashMail(mailId)
+  }
+
 
     return <Link to={"/mail/" + mail.id}> <article onClick={() => onReadMail(mail.id)} className={getMailClass(mail)}>
       <button onClick={(ev) => onSetStar(ev, mail.id)} className="star"><img src={setStarImg()} /></button>
@@ -45,6 +51,7 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle}){
       <div className="subject">{mail.subject}</div>
       <div className="mail-body">{mail.body}</div>
       <div className="sent-at">{mail.sentAt}</div>
+      <button onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/img/trash.png" /></button>
     </article></Link>
  
 }

@@ -4,7 +4,7 @@ export function MailCompose({onCloseModal, onMailSent}) {
 
     let mail = {
         id: utilService.makeId(),
-        sentAt: new Date().getTime(),
+        sentAt: utilService.getDate(),
         labels: [],
         isRead: true
     }
@@ -27,7 +27,6 @@ export function MailCompose({onCloseModal, onMailSent}) {
         <span>New Message</span>
         <button onClick={onCloseModal}>X</button>
     </div>
-    <form onSubmit={onSendMail}>
     <div className="send-to flex">
         <label htmlFor="send-to">To:</label>
         <input onChange={(ev) => handleInput(ev, 'to')} type="text" placeholder="example: usermail@gmail.com" id="send-to" />
@@ -40,8 +39,7 @@ export function MailCompose({onCloseModal, onMailSent}) {
         <p onInput={(ev) => handleTextBox(ev, 'body')} role='textbox' aria-multiline="true" contentEditable='true'></p>
     </div>
     <div className="btns">
-        <button>Send</button>
+        <button onClick={onSendMail}>Send</button>
     </div>
-    </form>
 </div>
 }

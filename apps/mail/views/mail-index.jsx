@@ -10,6 +10,8 @@ export class MailIndex extends React.Component {
     state = {
         mails: [],
         isCompose: false,
+        filterBy: 'inbox',
+        searchBy: '',
     }
 
     componentDidMount() {
@@ -22,22 +24,26 @@ export class MailIndex extends React.Component {
     }
 
     loadMails = () => {
-        mailService.query().then(mails => this.setState({ mails }))
+        mailService.query(this.state.filterBy, this.state.searchBy).then(mails => this.setState({ mails }))
     }
 
-    importantToggle = (mailId) => {
-        mailService.setImportant(mailId).then(mails => {
-            this.setState({ mails })
-        }
-        )
-    }
-
-    onComposeMail = () => {
-
-    }
-
-    onFilterBy = (filterBy) => {
+    onSetFilter = (filterBy) => {
         console.log(filterBy);
+        this.setState({ filterBy }, () => {
+            this.loadMails()
+        })
+    }
+
+    onSearchBy = ({target}) => {
+        this.setState({searchBy: target.value} , () => {
+            this.loadMails()
+        })
+
+    }
+
+    trashMail = (mailId) => {
+        mailService.sendToTrash(mailId)
+        .then(() => this.loadMails())
     }
 
     openComposeModal = () => {
@@ -50,16 +56,24 @@ export class MailIndex extends React.Component {
 
     onMailSent = (mail) => {
         mail.sentFrom = mail.to
-        mailService.sendMail(mail).then(mails => {
-            this.setState({ mails })
+        console.log(mail);
+        mailService.sendMail(mail).then(() => {
+            this.loadMails()
         })
         this.onCloseModal()
     }
 
     starToggle = (mailId) => {
-        mailService.setMailStar(mailId).then(mails => {
-            this.setState({ mails })
+        mailService.setMailStar(mailId).then(() => {
+            this.loadMails()
         })
+    }
+
+    importantToggle = (mailId) => {
+        mailService.setImportant(mailId).then(() => {
+            this.loadMails()
+        }
+        )
     }
 
     render() {
@@ -67,8 +81,13 @@ export class MailIndex extends React.Component {
         if (!mails) return <span></span>
 
         return <section className="mail-index main-layout">
-            <MailOptions onFilterBy={this.onFilterBy} />
-            <MailList mails={mails} starToggle={this.starToggle} setMailAsRead={this.setMailAsRead} importantToggle={this.importantToggle} />
+            <MailOptions onSetFilter={this.onSetFilter} />
+            <div className="list-container">
+            <input className="search-bar" onChange={this.onSearchBy} type="search" placeholder="Search..." />
+            <MailList mails={mails} starToggle={this.starToggle} setMailAsRead={this.setMailAsRead}
+                importantToggle={this.importantToggle} trashMail={this.trashMail} />
+                </div>
+
             <button onClick={this.openComposeModal} className="compose"><img src="assets/img/write.png" />
                 Compose
             </button>
@@ -76,3 +95,13 @@ export class MailIndex extends React.Component {
         </section>
     }
 }
+
+
+// const criteria = {
+//     status: 'inbox/sent/trash/draft',
+//     txt: 'puki', // no need to support complex text search
+//     isRead: true, // (optional property, if missing: show all)
+//     isStared: true, // (optional property, if missing: show all)
+//     lables: ['important', 'romantic'] // has any of the labels
+//    }
+   
