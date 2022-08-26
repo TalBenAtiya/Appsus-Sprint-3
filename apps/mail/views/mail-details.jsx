@@ -30,6 +30,7 @@ export class MailDetails extends React.Component {
     render() {
         const { mail, isCompose } = this.state
         if (!mail) return <span></span>
+        console.log(mail);
 
         return <section className="mail-details-container main-layout">
             {/* <MailOptions onGoBack={this.onGoBack}/> */}
@@ -46,7 +47,9 @@ export class MailDetails extends React.Component {
                 </div>
                 From:
                 <h4>{mail.sentFrom}</h4>
-                <article>{mail.body}</article>
+                <article>{mail.body}
+                {mail.img && <img src={mail.img} />}
+                </article>
                 <div className="details-btns">
                     <button onClick={this.onGoBack}>Go Back</button>
                     {/* <button className="replay">Replay →</button> */}

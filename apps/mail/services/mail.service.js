@@ -9,187 +9,208 @@ export const mailService = {
     setImportant,
     sendMail,
     sendToTrash,
+    getUnreadMails,
 }
+
+console.log(new Date().getTime());
 
 const KEY = 'emailsDB'
 
 const gMails = [{
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Github',
     id: utilService.makeId(),
-    subject: 'Wating!',
-    body: 'Cant wait to see you!',
-    isRead: false,
-    sentAt: utilService.getDate(),
-    to: 'momo@momo.com',
-    labels: []
-},
-{
-    sentFrom: 'Tal Ben Atiya',
-    id: utilService.makeId(),
-    subject: 'Work Related',
-    body: 'Finish that project',
-    isRead: false,
-    sentAt: utilService.getDate(),
-    to: 'momo@momo.com',
-    labels: []
-},
-{
-    sentFrom: 'Tal Ben Atiya',
-    id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Facebook',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Adobe',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(1),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Pinterest',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Slack',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Epic Games',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(1),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Steelseries',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Nvidia',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
-    sentFrom: 'Tal Ben Atiya',
+    img: '',
+    sentFrom: 'Steam',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(3),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
+    img: '',
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
+    img: '',
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(1),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
+    img: '',
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
+    img: '',
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
+    img: '',
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(3),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
+    img: '',
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
     to: 'momo@momo.com',
     labels: []
 },
 {
+    img: '',
     sentFrom: 'Tal Ben Atiya',
     id: utilService.makeId(),
-    subject: 'Family',
+    subject: utilService.makeLorem(1),
     body: utilService.makeLorem(),
     isRead: false,
-    sentAt: utilService.getDate(),
+    sentAt: new Date().getTime(),
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    img: '',
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: utilService.makeLorem(1),
+    body: utilService.makeLorem(),
+    isRead: false,
+    sentAt: 1661510823500,
+    to: 'momo@momo.com',
+    labels: []
+},
+{
+    img: '',
+    sentFrom: 'Tal Ben Atiya',
+    id: utilService.makeId(),
+    subject: utilService.makeLorem(2),
+    body: utilService.makeLorem(),
+    isRead: false,
+    sentAt: 166151084,
     to: 'momo@momo.com',
     labels: []
 },
@@ -286,6 +307,14 @@ function sendMail(mail) {
     mails.unshift(mail)
     _saveToStorage(mails)
     return Promise.resolve()
+}
+
+function getUnreadMails() { 
+    let mails = _loadFromStorage()
+    if (!mails) return
+    const unreadMails = mails.filter(mail => mail.isRead === false)
+    if (unreadMails.length > 99) return '99+'
+    else return unreadMails.length
 }
 
 

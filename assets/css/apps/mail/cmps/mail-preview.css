@@ -65,8 +65,6 @@
     }
 }
 
-
-
 .sent-from {
     width: 150px;
     font-size: 18px;
@@ -94,10 +92,12 @@
 }
 
 .mail-body {
+    font-family: roboto-light;
     flex: 1;
     max-width: 100%;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin-inline-end: 20px;
 }
