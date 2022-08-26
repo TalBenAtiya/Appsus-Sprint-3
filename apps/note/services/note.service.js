@@ -134,15 +134,15 @@ function todoIsDone(noteId, todoId) {
     return Promise.resolve(notes)
 }
 
-function createNoteTxt(property, txt) {
+function createNoteTxt(title, txt) {
     const notes = _loadFromStorage()
     let note = {
         id: utilService.makeId(),
         type: "note-txt",
         isPinned: true,
         info: {
-            title: property === 'title' ? txt : '',
-            txt: property === 'txt' ? txt : ''
+            title: title? title : '',
+            txt: txt ? txt : ''
         },
         style: {
             backgroundColor: '#fff'
@@ -156,7 +156,6 @@ function createNoteTxt(property, txt) {
 }
 
 function onRemoveNote(noteId) {
-    console.log(noteId)
     const notes = _loadFromStorage()
     let idx = notes.findIndex(note => note.id === noteId)
     console.log('idx',idx)

@@ -7,13 +7,18 @@
     border-color: #e0e0e0;
     background-color: #fff;
     border: 1px solid transparent;
-    cursor: pointer;
+    cursor: text;
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     display: flex;
     align-items: center;
     font-weight: bold;
     font-size: 20px;
+    /* justify-content: flex-end; */
+
 }
+/* .note-add-box > *:not(:)  { */
+    /* justify-content: flex-end; */
+/* } */
 
 .note-add {
     width: 60%;
@@ -23,7 +28,7 @@
 }
 
 [contentEditable=true]:empty:not(:focus):before{
-    content:attr(dataText)
+    content:attr(datatext)
 }
 
 .adding-note-txt {
@@ -33,7 +38,34 @@
     border-color: #e0e0e0;
     background-color: #fff;
     border-radius: 8px;
-    overflow: hidden;
     cursor: default;
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
+.import-img-container {
+
+}
+
+.import-img-icon {
+    width: 35px;
+    height: 35px;
+    position: absolute; 
+    cursor: pointer;   
+}
+
+.import-img-input {
+    width: 35px;
+    height: 35px;
+    opacity: 0;
+}
+
+.add-note-btn {
+    cursor: pointer;
+    width: 50px;
+    position: absolute;
+    right: -22px;
+    bottom: -22px;
+
+
+}
+
