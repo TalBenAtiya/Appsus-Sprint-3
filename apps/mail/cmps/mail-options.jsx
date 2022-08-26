@@ -1,11 +1,16 @@
-export function MailOptions({onSetFilter}) {
+import { MailCompose } from "../cmps/mail-compose.jsx"
 
-    
+export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal}) {
+
+
     return <section className="user-options">
-
+        <button onClick={openComposeModal} className="compose"><img src="assets/img/write.png" />
+            Compose
+        </button>
         <div onClick={() => onSetFilter('inbox')} className="flex" tabIndex="1">
             <img src="assets/img/inbox.png" />
             <h4>Inbox</h4>
+            {/* <span>{getUnreadMails()}</span> */}
         </div>
         <div onClick={() => onSetFilter('starred')} className="flex" tabIndex="1">
             <img src="assets/img/star2.png" />
