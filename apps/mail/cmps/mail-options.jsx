@@ -1,6 +1,6 @@
 import { MailCompose } from "../cmps/mail-compose.jsx"
 
-export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal}) {
+export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal, }) {
 
 
     return <section className="user-options">
@@ -28,5 +28,21 @@ export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal}) {
             <img src="assets\img\trash.png" />
             <h4>Trash</h4>
         </div>
+
+        <section className="sort-container">
+            <h4>Sort </h4>
+            <label htmlFor="abc">
+                Alphabetical
+                <input type="checkbox" id="abc"/>
+            </label>
+            <label htmlFor="date">
+                Date
+                <input type="checkbox" id="date"/>
+            </label>
+            <label htmlFor="star">
+                Starred
+                <input type="checkbox" id="star"/>
+            </label>
+        </section>
     </section>
 }

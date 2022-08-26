@@ -50,8 +50,9 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle, t
       <div className="sent-from"> {mail.sentFrom}</div>
       <div className="subject">{mail.subject}</div>
       <div className="mail-body">{mail.body}</div>
-      <div className="sent-at">{mail.sentAt}</div>
-      <button onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/img/trash.png" /></button>
+      <div className="sent-at">{mail.sentAt}
+      <button onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/svg/trash-icon.svg" /></button>
+      </div>
     </article></Link>
  
 }

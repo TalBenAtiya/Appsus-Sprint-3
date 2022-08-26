@@ -38,8 +38,20 @@
     background-color: var(--clr-default);
 }
 
-.mail-details div {
+.details-btns {
     margin-top: 20px;
     display: flex;
+    justify-content: space-between;
+}
+
+.mail-details article {
+    width: 80%;
+    align-self: center;
+    flex: 1;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }

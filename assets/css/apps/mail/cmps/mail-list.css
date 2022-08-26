@@ -6,6 +6,7 @@
     height: 78vh;
     border-radius: 0.5em;
     overflow-y: scroll;
+    text-overflow: ellipsis;
 }
 
 .search-bar {
@@ -27,4 +28,23 @@
     flex-grow: 1;
     margin-top: 30px;
     gap: 15px;
+}
+
+
+@media (min-width: 1450px) {
+    .list-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .list-container {
+        width: 80%;
+    }
+}
+
+@media (min-width: 600px) {
+    .list-container {
+        width: 60%;
+    }
 }

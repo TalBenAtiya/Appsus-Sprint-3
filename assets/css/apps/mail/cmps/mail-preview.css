@@ -3,7 +3,7 @@
     padding: 0px 10px;
     height: 50px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     background-color: white;
     transition: 0.2s;
     border-bottom: 1px solid var(--clr-default);
@@ -44,6 +44,7 @@
 
 .mail-preview.read {
     font-family: roboto-light;
+    background-color: rgb(251, 248, 255);
 }
 
 
@@ -69,31 +70,34 @@
 .sent-from {
     width: 150px;
     font-size: 18px;
-    margin-inline-end: 5px;
+    padding-inline-end: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .mail-preview .sent-at {
+    display: flex;
     font-family: roboto-light;
-    width: 150px;
-    flex-direction: row-reverse;
+    align-self: end;
     font-size: 13px;
-
+    align-items: center;
+    justify-content: center;
 }
 
 .subject {
-    width: 150px;
-    margin-inline-end: 5px;
+    max-width: 130px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-inline-end: 5px;
 }
 
 .mail-body {
-    flex: 3;
-    white-space: nowrap;
+    flex: 1;
+    max-width: 100%;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }

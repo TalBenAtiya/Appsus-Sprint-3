@@ -5,7 +5,8 @@ import { MailOptions } from "../cmps/mail-options.jsx"
 export class MailDetails extends React.Component {
 
     state = {
-        mail: null
+        mail: null,
+        isCompose: false,
     }
 
     componentDidMount() {
@@ -18,7 +19,7 @@ export class MailDetails extends React.Component {
             .then((mail) => {
                 if (!mail) return this.onGoBack()
                 mailService.mailRead(mailId).then(() =>
-                this.setState({mail: {...mail , isRead: true }}))
+                    this.setState({ mail: { ...mail, isRead: true } }))
             })
     }
 
@@ -27,24 +28,31 @@ export class MailDetails extends React.Component {
     }
 
     render() {
-        const { mail } = this.state
+        const { mail, isCompose } = this.state
         if (!mail) return <span></span>
-        
-    return<section className="mail-details-container main-layout">
-        <MailOptions/>
-    <section className="mail-details">
-        <h5>Date:{mail.sentAt}</h5>
-        Subject:
-        <h2>{mail.subject}</h2>
-        From:
-        <h4>{mail.sentFrom}</h4>
-        <article>{mail.body}</article>
-        <div>
-        <button onClick={this.onGoBack}>Go Back</button>
-        {/* <button className="replay">Replay →</button> */}
-        </div>
-    </section>
-    </section> 
+
+        return <section className="mail-details-container main-layout">
+            {/* <MailOptions onGoBack={this.onGoBack}/> */}
+            <section className="mail-details">
+                <div className="details-container">
+                    <div>
+                        Subject:
+                        <h2>{mail.subject}</h2>
+                    </div>
+                    <div>
+                        Date:
+                        <h5>{mail.sentAt}</h5>
+                    </div>
+                </div>
+                From:
+                <h4>{mail.sentFrom}</h4>
+                <article>{mail.body}</article>
+                <div className="details-btns">
+                    <button onClick={this.onGoBack}>Go Back</button>
+                    {/* <button className="replay">Replay →</button> */}
+                </div>
+            </section>
+        </section>
     }
 
 }
