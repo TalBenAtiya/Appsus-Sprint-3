@@ -27,15 +27,16 @@
 
 .mail-details button {
     width: fit-content;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     padding: 10px;
     font-size: 15px;
     border-radius: 2em;
-    border: 1px solid black;
+    border: 1px solid var(--clr-main);
 }
 
 .mail-details button:hover {
-    background-color: var(--clr-default);
+    background-color: var(--clr-main);
+    color: white;
 }
 
 .details-btns {
@@ -45,9 +46,17 @@
 }
 
 .mail-details article {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 80%;
     align-self: center;
     flex: 1;
+}
+
+.mail-details article img {
+    width: 300px;
+    align-self: center;
 }
 
 .details-container {

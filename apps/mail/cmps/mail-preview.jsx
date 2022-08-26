@@ -1,4 +1,5 @@
 import { mailService } from "../services/mail.service.js"
+import { utilService } from "../../../services/util.service.js"
 
 const { Link } = ReactRouterDOM
 
@@ -48,9 +49,9 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle, t
       <button onClick={(ev) => onSetStar(ev, mail.id)} className="star"><img src={setStarImg()} /></button>
       <button onClick={(ev) => onSetImportant(ev, mail.id)} className="important"><img src={setImprotantImg()} /></button>
       <div className="sent-from"> {mail.sentFrom}</div>
-      <div className="subject">{mail.subject}</div>
+      <div className="subject">{mail.subject} -</div>
       <div className="mail-body">{mail.body}</div>
-      <div className="sent-at">{mail.sentAt}
+      <div className="sent-at">{utilService.getDate(mail.sentAt)}
       <button onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/svg/trash-icon.svg" /></button>
       </div>
     </article></Link>

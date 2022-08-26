@@ -12,23 +12,29 @@
 }
 
 .home-img-container img {
-    width: 25%;
-}
-
-.home-img-container img:nth-child(2) {
-    width: 20%;
-}
-
-.home-img-container img:first-child {
-    width: 30%;
+    width: 80%;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 .home-img-container img:first-child {
-    padding-bottom: 20px;
+    padding-bottom: 50px;
 }
 
-.home-img-container img:last-child {
-    padding-bottom: 10px;
+.home-img-container div {
+    animation: scale-up-center 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    color: var(--clr-main);
+    transition: 0.3s;
+}
+
+@keyframes scale-up-center {
+    0% {
+        transform: scale(0.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .home h1 {

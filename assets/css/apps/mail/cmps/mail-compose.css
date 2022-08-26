@@ -1,20 +1,23 @@
 .send-mail {
-    width:600px ;
+    width: 600px;
     flex-direction: column;
     background-color: var(--clr-main);
     position: fixed;
     bottom: 10px;
     left: 20%;
+    border-right: 1px solid var(--clr-main) ;
+    border-left: 1px solid var(--clr-main) ;
+    border-bottom: 1px solid var(--clr-main) ;
 }
 
 .send-mail div {
     padding: 0.5em 5px;
-  
+
 }
 
 .send-mail input {
     width: 100%;
-    border: 0;  
+    border: 0;
 }
 
 .send-mail .mail-text-area {
@@ -30,7 +33,7 @@
     align-items: center;
     font-family: roboto-thin;
     font-size: 15px;
-  
+
 }
 
 .mail-title span {
@@ -43,7 +46,8 @@
     color: white;
 }
 
-.send-to, .mail-subject {
+.send-to,
+.mail-subject {
     border-bottom: 1px solid var(--clr-default);
     background-color: white;
 }
@@ -51,9 +55,10 @@
 .send-mail .btns {
     display: flex;
     background-color: white;
-    flex-direction: row-reverse;
     padding-bottom: 10px;
     padding-inline-end: 10px;
+    justify-content: space-between;
+    border-top: 1px solid var(--clr-default);
 }
 
 .btns button {
@@ -69,6 +74,27 @@
     word-wrap: break-word;
 }
 
+.mail-text-area div {
+    padding: 0;
+}
+
 .mail-text-area p {
     min-height: 400px;
+}
+
+.send-mail .img-upload-container {
+    padding: 0;
+    width: 30px;
+}
+
+.send-mail .import-img-input {
+    width: 30px;
+}
+
+.send-mail .import-img-icon {
+    width: 30px;
+}
+
+.send-mail .mail-img-area {
+    width: 200px;
 }

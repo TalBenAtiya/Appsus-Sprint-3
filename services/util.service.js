@@ -7,6 +7,7 @@ export const utilService = {
     getDayName,
     getMonthName,
     getDate,
+    getCurrency,
 }
 
 function makeId(length = 6) {
@@ -62,19 +63,17 @@ function getMonthName(date) {
     return monthNames[date.getMonth()]
 }
 
-function getDate() {
-    var current_date = new Date ( );
+function getDate(date) {
+    var current_date = new Date(date);
     var month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    
-    // var hours = current_date.getHours();
-    // var minutes = current_date.getMinutes();
-    // var ampm = hours >= 12 ? 'pm' : 'am';
-    // hours = hours % 12;
-    // hours = hours ? hours : 12; // the hour '0' should be '12'
-    // minutes = minutes < 10 ? '0'+minutes : minutes;
-    
-    // Display date in required format
+
     var formatted_date = day_names[current_date.getDay()] + ", " + month_names[current_date.getMonth()] + " " + current_date.getDate()
     return formatted_date
+}
+
+function getCurrency(str) {
+    if (str === 'EUR') return '€'
+    if (str === 'USD') return '$'
+    if (str === 'ILS') return '₪'
 }

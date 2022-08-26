@@ -1,16 +1,18 @@
 import { MailCompose } from "../cmps/mail-compose.jsx"
+const { NavLink } = ReactRouterDOM
 
-export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal, }) {
+export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal, sortMails }) {
 
 
     return <section className="user-options">
-        <button onClick={openComposeModal} className="compose"><img src="assets/img/write.png" />
+        <button onClick={openComposeModal} className="compose">
+            <img src="assets/img/write.png" />
             Compose
         </button>
         <div onClick={() => onSetFilter('inbox')} className="flex" tabIndex="1">
             <img src="assets/img/inbox.png" />
             <h4>Inbox</h4>
-            {/* <span>{getUnreadMails()}</span> */}
+            <span className="unread-mails">{getUnreadMails()}</span>
         </div>
         <div onClick={() => onSetFilter('starred')} className="flex" tabIndex="1">
             <img src="assets/img/star2.png" />
@@ -29,19 +31,16 @@ export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal, }) 
             <h4>Trash</h4>
         </div>
 
+
         <section className="sort-container">
             <h4>Sort </h4>
             <label htmlFor="abc">
                 Alphabetical
-                <input type="checkbox" id="abc"/>
+                <input onChange={(ev) => sortMails(ev)} type="checkbox" id="abc" />
             </label>
             <label htmlFor="date">
                 Date
-                <input type="checkbox" id="date"/>
-            </label>
-            <label htmlFor="star">
-                Starred
-                <input type="checkbox" id="star"/>
+                <input onChange={(ev) => sortMails(ev)} type="checkbox" id="date" />
             </label>
         </section>
     </section>

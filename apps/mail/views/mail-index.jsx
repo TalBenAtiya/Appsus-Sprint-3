@@ -37,7 +37,17 @@ export class MailIndex extends React.Component {
         this.setState({ searchBy: target.value }, () => {
             this.loadMails()
         })
+    }
 
+    sortMails = ({target}) => {
+        const sortOpt = target.id
+        const { mails } = this.state
+        
+       if (!target.checked) this.loadMails()
+   
+        if (sortOpt === 'abc') mails.sort((mailA, mailB) => mailA.subject.toUpperCase() > mailB.subject.toUpperCase() ? 1 : -1)
+        if (sortOpt === 'date') mails.sort((mailA, mailB) => mailA.sentAt - mailB.sentAt ? -1 : 1 )
+        this.setState({mails})
     }
 
     trashMail = (mailId) => {
@@ -53,15 +63,13 @@ export class MailIndex extends React.Component {
         this.setState({ isCompose: false })
     }
 
-    // getUnreadMails = () => {
-    //     const { mails } = this.state
-    //     const unreadMails = mails.filter(mail => mail.isRead === false)
-    //     return unreadMails.length
-    // }
+    getUnreadMails = () => {
+       const unreadMails = mailService.getUnreadMails()
+       return unreadMails
+    }
 
     onMailSent = (mail) => {
         mail.sentFrom = mail.to
-        console.log(mail);
         mailService.sendMail(mail).then(() => {
             this.loadMails()
         })
@@ -87,7 +95,7 @@ export class MailIndex extends React.Component {
 
         return <section className="mail-index main-layout">
             <MailOptions onSetFilter={this.onSetFilter} mails={mails} getUnreadMails={this.getUnreadMails}
-                openComposeModal={this.openComposeModal} isCompose={isCompose} />
+                openComposeModal={this.openComposeModal} isCompose={isCompose} sortMails={this.sortMails} />
 
             <div className="list-container">
                 <input className="search-bar" onChange={this.onSearchBy} type="search" placeholder="Search..." />
