@@ -1,6 +1,7 @@
 import { mailService } from "../services/mail.service.js"
 import { MailOptions } from "../cmps/mail-options.jsx"
 
+
 export class MailDetails extends React.Component {
 
     state = {
@@ -38,7 +39,10 @@ export class MailDetails extends React.Component {
         From:
         <h4>{mail.sentFrom}</h4>
         <article>{mail.body}</article>
-        <button>Replay →</button>
+        <div>
+        <button onClick={this.onGoBack}>Go Back</button>
+        {/* <button className="replay">Replay →</button> */}
+        </div>
     </section>
     </section> 
     }

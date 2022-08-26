@@ -28,14 +28,13 @@ export class MailIndex extends React.Component {
     }
 
     onSetFilter = (filterBy) => {
-        console.log(filterBy);
         this.setState({ filterBy }, () => {
             this.loadMails()
         })
     }
 
-    onSearchBy = ({target}) => {
-        this.setState({searchBy: target.value} , () => {
+    onSearchBy = ({ target }) => {
+        this.setState({ searchBy: target.value }, () => {
             this.loadMails()
         })
 
@@ -43,7 +42,7 @@ export class MailIndex extends React.Component {
 
     trashMail = (mailId) => {
         mailService.sendToTrash(mailId)
-        .then(() => this.loadMails())
+            .then(() => this.loadMails())
     }
 
     openComposeModal = () => {
@@ -53,6 +52,12 @@ export class MailIndex extends React.Component {
     onCloseModal = () => {
         this.setState({ isCompose: false })
     }
+
+    // getUnreadMails = () => {
+    //     const { mails } = this.state
+    //     const unreadMails = mails.filter(mail => mail.isRead === false)
+    //     return unreadMails.length
+    // }
 
     onMailSent = (mail) => {
         mail.sentFrom = mail.to
@@ -81,27 +86,16 @@ export class MailIndex extends React.Component {
         if (!mails) return <span></span>
 
         return <section className="mail-index main-layout">
-            <MailOptions onSetFilter={this.onSetFilter} />
-            <div className="list-container">
-            <input className="search-bar" onChange={this.onSearchBy} type="search" placeholder="Search..." />
-            <MailList mails={mails} starToggle={this.starToggle} setMailAsRead={this.setMailAsRead}
-                importantToggle={this.importantToggle} trashMail={this.trashMail} />
-                </div>
+            <MailOptions onSetFilter={this.onSetFilter} mails={mails} getUnreadMails={this.getUnreadMails}
+                openComposeModal={this.openComposeModal} isCompose={isCompose} />
 
-            <button onClick={this.openComposeModal} className="compose"><img src="assets/img/write.png" />
-                Compose
-            </button>
+            <div className="list-container">
+                <input className="search-bar" onChange={this.onSearchBy} type="search" placeholder="Search..." />
+                <MailList mails={mails} starToggle={this.starToggle} setMailAsRead={this.setMailAsRead}
+                    importantToggle={this.importantToggle} trashMail={this.trashMail} />
+            </div>
+
             {isCompose && <MailCompose onCloseModal={this.onCloseModal} onMailSent={this.onMailSent} />}
         </section>
     }
 }
-
-
-// const criteria = {
-//     status: 'inbox/sent/trash/draft',
-//     txt: 'puki', // no need to support complex text search
-//     isRead: true, // (optional property, if missing: show all)
-//     isStared: true, // (optional property, if missing: show all)
-//     lables: ['important', 'romantic'] // has any of the labels
-//    }
-   

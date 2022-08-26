@@ -31,11 +31,15 @@
     padding: 10px;
     font-size: 15px;
     border-radius: 2em;
-    margin-top: 20px;
-    align-self: flex-end;
     border: 1px solid black;
 }
 
 .mail-details button:hover {
     background-color: var(--clr-default);
+}
+
+.mail-details div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
