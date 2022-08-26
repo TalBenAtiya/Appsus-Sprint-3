@@ -46,3 +46,14 @@
 .note-preview {
   margin-bottom: 10px;
 }
+
+.note-img h3 {
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
+.note-img p {
+  padding-left: 10px;
+  margin-top: 0;
+}

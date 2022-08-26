@@ -4,7 +4,7 @@ import { NoteImg } from "./note-img.jsx"
 import { NoteTodos } from "./note-todos.jsx"
 import {NoteEdit} from "./note-edit.jsx"
 import { NoteVideo } from "./note-video.jsx"
-// const { Link } = ReactRouterDOM
+
 export function NotePreview({ note , onChangeBackgroundColor,onchangeTxt,onchangeTodoTxt,onTodoIsDone,onRemoveNote}) {
 
     function noteTemplate() {

@@ -17,3 +17,8 @@
     opacity: 0;
     cursor: pointer;
 }
+
+.note-img .note-edit {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
