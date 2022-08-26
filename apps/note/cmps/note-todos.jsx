@@ -27,10 +27,10 @@ export class NoteTodos extends React.Component {
     render() {
         const { note } = this.props
         return <section className="note-todos">
-            <h3 onBlur={(ev) => this.changeTxt(ev, 'title')} className="note-title" role='textbox' aria-multiline="true" contentEditable="true">{note.info.title}</h3>
+            <h3 onBlur={(ev) => this.changeTxt(ev, 'title')} className="note-title" role='textbox' aria-multiline="true" contentEditable="true" suppressContentEditableWarning='true'>{note.info.title}</h3>
             <ul className="todos-list">
                 {note.info.todos.map((todo,idx) =>
-                    <div key={todo.id} className="todo-container"> <input type="checkbox" checked={todo.isDone} onChange={() => this.todoIsDone(todo.id)} /><li className={note.info.todos[idx].isDone? 'isDone' : ''} onBlur={(ev) => changeTodosTxt(ev, todo.id)} aria-multiline="true" contentEditable="true" >{todo.txt}</li></div>
+                    <div key={todo.id} className="todo-container"> <input type="checkbox" checked={todo.isDone} onChange={() => this.todoIsDone(todo.id)} /><li className={note.info.todos[idx].isDone? 'isDone' : ''} onBlur={(ev) => changeTodosTxt(ev, todo.id)} aria-multiline="true" contentEditable="true" suppressContentEditableWarning='true' >{todo.txt}</li></div>
                 )}
             </ul>
         </section>

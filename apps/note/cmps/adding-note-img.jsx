@@ -1,4 +1,4 @@
-export class AddingNoteTxt extends React.Component {
+export class AddingNoteImg extends React.Component {
 
     state = {
         title: null,
@@ -19,12 +19,10 @@ export class AddingNoteTxt extends React.Component {
     render() {
         const { onTxtChange, sumitNote } = this
         return <section className="adding-note-txt">
+            <div><img src={note.info.url} alt="" /></div>
             <h3 onBlur={(ev) => onTxtChange(ev, 'title')} datatext="Title" role='textbox' contentEditable="true" suppressContentEditableWarning="true" className="note-title"></h3>
             <p onBlur={(ev) => onTxtChange(ev, 'txt')} datatext="Take a note…" contentEditable="true" suppressContentEditableWarning='true' className="note-txt"></p>
             <div className="add-note-btn" onClick={() => sumitNote()}><img src="assets/img/add-note-icon.png" alt="" /></div>
         </section>
     }
 }
-
-// onBlur={(ev) => createNote(ev, 'txt')}
-// {createNoteTxt,created}

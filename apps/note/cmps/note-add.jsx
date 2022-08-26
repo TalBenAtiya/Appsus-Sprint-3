@@ -9,7 +9,9 @@ export class NoteAdd extends React.Component {
         noteVideoOpen: false,
     }
 
-    dropDownAdd = (noteType, { target }) => {
+    dropDownAdd = (noteType, ev) => {
+        if(ev.target !== ev.currentTarget) return
+        const {target} = ev
         target.setAttribute('dataText', 'Title')
         switch (noteType) {
             case 'note-txt':
@@ -29,17 +31,15 @@ export class NoteAdd extends React.Component {
     }
 
     importImg = (ev) => {
-        // ev.preventDefault()
-        ev.stopPropagation()
-        console.log('hello')
+        console.log(ev)
     }
 
     render() {
         const { createNoteTxt } = this.props
         const { noteTxtOpen, noteImgOpen, noteTodosOpen, noteVideoOpen, noteStartOpen } = this.state
         return <section className="note-add">
-            {noteStartOpen && <div onClick={(ev) => this.dropDownAdd('note-txt', ev)} dataText="Take a note…" contentEditable='true' className="note-add-box"><div onClick={(ev)=>importImg(ev)}><img src="assets/svg/add-img-icon.svg" alt="" /></div></div>}
-            {noteTxtOpen && <AddingNoteTxt createNoteTxt={createNoteTxt} created={(onStart, onTxt) => { this.setState({ noteStartOpen: onStart, noteTxtOpen: onTxt }) }} />}
+            {noteStartOpen && <div onClick={(ev) => this.dropDownAdd('note-txt', ev)} suppressContentEditableWarning='true' contentEditable='true' className="note-add-box">Take a note...<div className="import-img-container" onClick={(ev)=>this.importImg(ev)}> <img className="import-img-icon" src="assets/svg/add-img-icon.svg" alt="" /> <input className="import-img-input" type='file' /></div></div>}
+            {noteTxtOpen && <AddingNoteTxt ref={this.inputRef} createNoteTxt={createNoteTxt} created={(onStart, onTxt) => { this.setState({ noteStartOpen: onStart, noteTxtOpen: onTxt }) }} />}
             {noteImgOpen && <AddingNoteImg createNoteImg={createNoteImg} created={ (onStart, onImg) => {this.setState({noteStartOpen:onStart,noteImgOpen:onImg})}}/>}
         </section>
     }
