@@ -45,21 +45,40 @@ export class NoteIndex extends React.Component {
             .then((notes) => this.setState({ notes }))
     }
 
+    createNoteTxt = (property, txt) => {
+        noteService.createNoteTxt(property, txt)
+            .then((notes) => this.setState({ notes }))
+    }
+
+    onRemoveNote = (noteId) => {
+        noteService.onRemoveNote(noteId)
+            .then(notes => this.setState({ notes }))
+    }
+
     render() {
         const { notes } = this.state
-        const { onChangeBackgroundColor, onSetFilter, onchangeTxt, onchangeTodoTxt, onTodoIsDone } = this
+        const {
+            onChangeBackgroundColor,
+            onSetFilter,
+            onchangeTxt,
+            onchangeTodoTxt,
+            onTodoIsDone,
+            createNoteTxt,
+            onRemoveNote,
+        } = this
 
         return <section className="note-index main-layout">
             {/* <AddNote onSetNote={this.onSetAddNote}/> */}
             <div className="filter-and-add-container">
                 <NoteFilter onSetFilter={onSetFilter} />
-                <NoteAdd />
+                <NoteAdd createNoteTxt={createNoteTxt} />
             </div>
             <NoteList notes={notes}
                 onChangeBackgroundColor={onChangeBackgroundColor}
                 onchangeTxt={onchangeTxt}
                 onchangeTodoTxt={onchangeTodoTxt}
                 onTodoIsDone={onTodoIsDone}
+                onRemoveNote={onRemoveNote}
             />
         </section>
 
