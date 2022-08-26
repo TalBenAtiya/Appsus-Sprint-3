@@ -1,6 +1,8 @@
 import { bookService } from '../services/book.service.js';
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 
+const  { Link } = ReactRouterDOM
+
 export class BookAdd extends React.Component {
 
     state = {
@@ -30,7 +32,7 @@ export class BookAdd extends React.Component {
                     <button>Go</button>
                 </label>
             </form>
-            {books &&<ul className="search-book-list">
+            {books && <ul className="search-book-list">
                 {books.map(book => {
                     return <li key={book.id}>
                         {book.title}
@@ -38,6 +40,7 @@ export class BookAdd extends React.Component {
                     </li>
                 })}
             </ul>}
+                <Link to="/book"><button>Go Back</button></Link>
         </section>
     }
 }

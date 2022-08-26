@@ -1,0 +1,48 @@
+.book-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-color: #e0e0e0;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.book-preview:hover {
+    animation: shadow-drop-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes shadow-drop-center {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.35);
+    }
+}
+
+
+.book-preview>:first-child {
+    color: var(--clr-main);
+    text-transform: capitalize;
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-family: roboto-medium;
+}
+
+.book-preview>:last-child {
+    color: rgb(24, 24, 24);
+    font-size: 16px;
+    margin-top: 5px;
+    font-family: roboto-medium;
+}
+
+.book-preview img {
+    width: 100%;
+    object-fit: cover;
+}

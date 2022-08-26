@@ -4,11 +4,12 @@
     text-align: center;
     align-content: center;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .book-add form {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .book-add input {
@@ -24,6 +25,7 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .search-book-list li {
@@ -38,5 +40,19 @@
     border: 0;
     padding: 5px;
     border-radius: 0.5em;
+}
+
+.book-add a {
+    width: fit-content;
+    display: flex;
+    align-self: center;
+}
+
+.book-add a button {
+    background-color: var(--clr-main);
+    border: 0;
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
 }
 

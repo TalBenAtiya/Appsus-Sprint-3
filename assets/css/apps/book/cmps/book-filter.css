@@ -1,0 +1,64 @@
+.book-filter {
+    margin: 30px 0;
+    display: flex;
+}
+
+.book-filter label {
+    margin-inline-start: 10px;
+    margin-bottom: 10px;
+}
+
+.book-filter input {
+    margin-inline-start: 5px;
+    /* border: 0; */
+    /* padding: 5px; */
+    /* background-color: rgb(233, 233, 233); */
+    border: 1px solid var(--clr-main);
+    position: relative;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-color: #e0e0e0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    animation: shadow-drop-inputs 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes shadow-drop-inputs {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 1px 0px rgba(0, 0, 0, 0.35);
+    }
+}
+
+.add-book-btn {
+    padding: 10px;
+    border: 1px solid transparent;
+    border-color: #e0e0e0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer; 
+}
+
+.book-filter a {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.book-filter a button {
+    width: fit-content;
+    align-self: flex-end;
+}
+
+
+.add-book-btn:hover {
+    animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    background-color: var(--clr-main);
+    color: white;
+}

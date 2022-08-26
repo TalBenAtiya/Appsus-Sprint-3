@@ -1,5 +1,5 @@
 import { bookService } from "../services/book.service.js";
-import { utilService } from "../services/util.service.js";
+import { utilService } from "../../../services/util.service.js";
 
 
 export class ReviewAdd extends React.Component {
@@ -47,18 +47,6 @@ export class ReviewAdd extends React.Component {
         const { reviews } = this.props
         const { review } = this.state
         return <section className="review-add">
-            <div>
-                <h2>Reviews:</h2>
-                {reviews.map(review => <article key={utilService.makeId()}>
-                    <h3>User Name: {review.userName}</h3>
-                    <h5>Date: {review.date}</h5>
-                    <p>{review.text}</p>
-                    <h5>Rating: {review.rating}</h5>
-                    <hr />
-                </article>
-                )}
-            </div>
-
             <form onSubmit={this.onAddReview} className="review-input">
                 <h2>Add Review</h2>
                 <label htmlFor="user-name">Name:
@@ -78,6 +66,18 @@ export class ReviewAdd extends React.Component {
                 </label>
                 <button>Send Review</button>
             </form>
+
+            <div className="reviews-container">
+                <h2>Reviews:</h2>
+                {reviews.map(review => <article key={utilService.makeId()}>
+                    <h3>User Name: {review.userName}</h3>
+                    <h5>Date: {review.date}</h5>
+                    <p>{review.text}</p>
+                    <h5>Rating: {review.rating}</h5>
+                    <hr />
+                </article>
+                )}
+            </div>
         </section>
     }
 }

@@ -1,0 +1,103 @@
+.review-add {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.review-add h2 {
+    color: var(--clr-main);
+}
+
+
+.review-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.review-input h2 {
+    align-self: center;
+}
+
+.review-input input {
+    margin-inline-start: 15px;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-color: #e0e0e0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px -4px #00000054;
+}
+
+.review-input select {
+    margin-inline-start: 25px;
+    position: relative;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-color: #e0e0e0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px -4px #00000054;
+}
+
+.review-input>:nth-child(4) input {
+    margin-inline-start: 6px;
+}
+
+.review-input button {
+    background-color: var(--clr-main);
+    border: 0;
+    border-radius: 8px;
+    padding: 8px;
+    color: white;
+}
+
+.reviews-container {
+    display: flex;
+    flex: wrap;
+    flex-direction: column;
+    text-overflow: clip;
+    word-break: break-all
+}
+
+.reviews-container h2 {
+    margin-bottom: 10px;
+}
+
+.reviews-container h3 {
+    margin-bottom: 5px;
+}
+
+.reviews-container p {
+    max-width: 400px;
+}
+
+@media (min-width: 700px) {
+    .review-add{
+        flex-direction: row;
+    }
+
+}
+
+
+@media (min-width: 950px) {
+    .reviews-container p {
+        max-width: 600px;
+    }
+}
+
+
+@media (min-width: 1350px) {
+    .reviews-container p {
+        max-width: 800px;
+    }
+}

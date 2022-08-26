@@ -1,7 +1,7 @@
 import { BookList } from "../cmps/book-list.jsx"
 import { BookFilter } from "../cmps/book-filter.jsx"
 import { bookService } from "../services/book.service.js"
-const  { Link } = ReactRouterDOM
+
 
 
 export class BookApp extends React.Component {
@@ -42,7 +42,6 @@ export class BookApp extends React.Component {
         const { books } = this.state
         return (
             <section className="book-app main-layout">
-               <Link to="/book/add"><button>Add Book</button></Link> 
                 <BookFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
                 <BookList onSelectBook={this.onSelectBook} books={books} />
             </section>
