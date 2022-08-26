@@ -9,7 +9,10 @@ export const noteService = {
     onchangeTodoTxt,
     todoIsDone,
     createNoteTxt,
+    createNoteImg,
     onRemoveNote,
+    createNoteTodos,
+    createNoteVideo,
 }
 
 const KEY = 'notesDB'
@@ -141,7 +144,7 @@ function createNoteTxt(title, txt) {
         type: "note-txt",
         isPinned: true,
         info: {
-            title: title? title : '',
+            title: title ? title : '',
             txt: txt ? txt : ''
         },
         style: {
@@ -149,7 +152,6 @@ function createNoteTxt(title, txt) {
         },
         label: [],
     }
-    console.log(note)
     notes.push(note)
     _saveToStorage(notes)
     return Promise.resolve(notes)
@@ -158,13 +160,82 @@ function createNoteTxt(title, txt) {
 function onRemoveNote(noteId) {
     const notes = _loadFromStorage()
     let idx = notes.findIndex(note => note.id === noteId)
-    console.log('idx',idx)
-    notes.splice(idx,1)
+    console.log('idx', idx)
+    notes.splice(idx, 1)
     _saveToStorage(notes)
     return Promise.resolve(notes)
 }
 
-function addLabel() {
 
+function createNoteImg(title, txt, url) {
+    const notes = _loadFromStorage()
+    let note = {
+        id: utilService.makeId(),
+        type: "note-img",
+        info: {
+            url: url,
+            title: title ? title : '',
+            txt: txt ? txt : ''
+        },
+        style: {
+            backgroundColor: "#fff"
+        },
+        label: [],
+    }
+    notes.push(note)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
 }
+
+function createNoteTodos(title, todos) {
+    const notes = _loadFromStorage()
+    let note = {
+        id: utilService.makeId(),
+        type: "note-todos",
+        info: {
+            title: title,
+            todos: todos
+        },
+        style: {
+            backgroundColor: "#fff"
+        },
+        label: [],
+    }
+    notes.push(note)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
+function createNoteVideo(title,txt,url) {
+    const notes = _loadFromStorage()
+    let note = {
+        id: utilService.makeId(),
+        type: "note-video",
+        info: {
+            url: addEmbed(url)+'',
+            title: title ? title : '',
+            txt: txt ? txt : ''
+        },
+        style: {
+            backgroundColor: "#fff"
+        },
+        label: [],
+    }
+    notes.push(note)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
+function addEmbed(url) {
+    let urlStart = url.substring(0,23)
+    let urlAlmostEnd = url.substring(32)
+    let endIdx = urlAlmostEnd.split('').findIndex(char => char === '=' )+31
+    let urlEnd = url.substring(32,endIdx-1)
+    return urlStart+'/embed/'+urlEnd
+}
+
+function addLabel() {
+    
+}
+
 

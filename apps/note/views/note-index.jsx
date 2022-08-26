@@ -45,14 +45,29 @@ export class NoteIndex extends React.Component {
             .then((notes) => this.setState({ notes }))
     }
 
-    createNoteTxt = (property, txt) => {
-        noteService.createNoteTxt(property, txt)
+    createNoteTxt = (title, txt) => {
+        noteService.createNoteTxt(title, txt)
             .then((notes) => this.setState({ notes }))
     }
 
     onRemoveNote = (noteId) => {
         noteService.onRemoveNote(noteId)
             .then(notes => this.setState({ notes }))
+    }
+
+    createNoteImg = (title, txt, url) => {
+        noteService.createNoteImg(title, txt, url)
+            .then(notes => this.setState({ notes }))
+    }
+
+    createNoteTodos = (title, todos) => {
+        noteService.createNoteTodos(title, todos)
+            .then(notes => this.setState({ notes }))
+    }
+
+    createNoteVideo = (title,txt,url) => {
+        noteService.createNoteVideo(title,txt,url) 
+        .then(notes => this.setState({ notes }))
     }
 
     render() {
@@ -65,13 +80,21 @@ export class NoteIndex extends React.Component {
             onTodoIsDone,
             createNoteTxt,
             onRemoveNote,
+            createNoteImg,
+            createNoteTodos,
+            createNoteVideo,
         } = this
 
         return <section className="note-index main-layout">
             {/* <AddNote onSetNote={this.onSetAddNote}/> */}
             <div className="filter-and-add-container">
                 <NoteFilter onSetFilter={onSetFilter} />
-                <NoteAdd createNoteTxt={createNoteTxt} />
+                <NoteAdd
+                    createNoteTxt={createNoteTxt}
+                    createNoteImg={createNoteImg}
+                    createNoteTodos={createNoteTodos}
+                    createNoteVideo={createNoteVideo}
+                    />
             </div>
             <NoteList notes={notes}
                 onChangeBackgroundColor={onChangeBackgroundColor}
@@ -81,8 +104,6 @@ export class NoteIndex extends React.Component {
                 onRemoveNote={onRemoveNote}
             />
         </section>
-
-
     }
 }
 
