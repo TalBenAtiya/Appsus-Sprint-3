@@ -72,10 +72,7 @@ nav :first-child {
     .app-hamburger-icon {
         display: none;
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> 3f43e2a507423d21532d5bb08a626b8a91f333a4
+
     nav {
         display: flex;
         position: unset;
