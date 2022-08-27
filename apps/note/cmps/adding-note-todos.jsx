@@ -43,7 +43,7 @@ export class AddingNoteTodos extends React.Component {
             <h3 onBlur={(ev) => onTxtChange(ev, 'title')} datatext="Title" role='textbox' contentEditable="true" suppressContentEditableWarning="true" className="note-title"></h3>
             <ul className="todos-list">
                 {this.state.todos.length>0 && this.state.todos.map((todo, idx) =>
-                    <div key={todo.id} className="todo-container">‣<li className={todo.isDone ? 'isDone' : ''} onBlur={(ev) => changeTodosTxt(ev, idx)} aria-multiline="true" contentEditable="true" suppressContentEditableWarning='true' >{todo.txt}</li></div>
+                    <div key={todo.id} className="todo-container">➤<li className={todo.isDone ? 'isDone' : ''} onBlur={(ev) => changeTodosTxt(ev, idx)} aria-multiline="true" contentEditable="true" suppressContentEditableWarning='true' >{todo.txt}</li></div>
                 )}
             </ul>
             <div className="add-todo-img-container"><img className="add-todo-img" onClick={() => addTodo()} src="assets/img/mini-plus-icon.png" alt="" /></div>
