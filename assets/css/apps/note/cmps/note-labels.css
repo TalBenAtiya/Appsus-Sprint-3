@@ -1,0 +1,59 @@
+.labels-container {
+    display: flex;
+    align-items: center;
+    color: #383a3b;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+    margin: 0 6px;
+    padding: 1px;
+    width: fit-content;
+}
+
+.remove-label {
+    margin-left: 10px;
+}
+
+.note-img .remove-label {
+    padding-right: 10px;
+}
+
+.note-img .label-txt {
+    margin-bottom: 0;
+}
+
+.note-img .labels-container {
+    margin-bottom: 10px;
+}
+
+.note-img .labels-container:first-child{
+    margin-top: 10px;
+}
+
+.note .labels-container {
+    height: 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: 1px solid #383a3b;
+    padding: 10px;
+    border-radius: 8px;
+}
+.labels-container:hover{
+    animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.add-label img {
+    width: 18px;
+    height: 18px;
+}   
+
+.note-img .labels-container {
+    height: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #383a3b;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+}

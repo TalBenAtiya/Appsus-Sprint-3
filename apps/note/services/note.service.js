@@ -13,10 +13,26 @@ export const noteService = {
     onRemoveNote,
     createNoteTodos,
     createNoteVideo,
+    addLabel,
+    onchangeLabelTxt,
+    onRemoveLabel,
 }
 
 const KEY = 'notesDB'
 const gNotes = [
+    {
+        id: utilService.makeId(),
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            title: 'Accounts',
+            txt: "avacadoMan@gmail.com \n password:avacadoavacado123"
+        },
+        style: {
+            backgroundColor: '#fff'
+        },
+        label: ["accounts"],
+    },
     {
         id: "n101",
         type: "note-txt",
@@ -26,9 +42,9 @@ const gNotes = [
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: '#fff'
+            backgroundColor: '#72A8EE'
         },
-        label: ["Get my stuff together"],
+        label: ["I Love Coding"],
     },
     {
         id: "n102",
@@ -39,9 +55,22 @@ const gNotes = [
             txt: ''
         },
         style: {
-            backgroundColor: "#fff"
+            backgroundColor: "#fde672"
         },
-        label: ["Get my stuff together"],
+        label: ["Cooking with my bff"],
+    },
+    {
+        id: utilService.makeId(),
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            title: 'important things about flex and grid',
+            txt: "content: the template inside items: the items inside the template place: controls template and items place - doesnt work in flex fit content: fits according to the content  justify-content — controls alignment of all items on the main axis. align-items — controls alignment of all items on the cross axis. align-self — controls alignment of an individual flex item on the cross axis. align-content — described in the spec as for packing flex lines; controls space between flex lines on the cross axis. gap, column-gap, and row-gap — used to create gaps or gutters between flex items. We will also discover how auto margins can be used for alignment in flexbox. grid: fill makes more grid places unlike fit"
+        },
+        style: {
+            backgroundColor: '#fff'
+        },
+        label: ["I Love Coding"],
     },
     {
         id: "n103",
@@ -67,9 +96,80 @@ const gNotes = [
             txt: ''
         },
         style: {
-            backgroundColor: "#fff"
+            backgroundColor: "#e26a6a"
         },
         label: ["yaron is the best"],
+    },
+    {
+        id: utilService.makeId(),
+        type: "note-video",
+        info: {
+            url: "https://www.youtube.com/embed/ztVuPGRp5zM",
+            title: "Relaxing Music",
+            txt: 'chill with me!'
+        },
+        style: {
+            backgroundColor: "#c29dc3"
+        },
+        label: ["music", "lofi", "chill"],
+    },
+    {
+        id: utilService.makeId(),
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            title: 'animation websites',
+            txt: "https://undraw.co/illustrations \n https://fontawesome.com/ \n https://www.figma.com/files/recent?fuid=1136569554370270706 \n https://animista.net/"
+        },
+        style: {
+            backgroundColor: '#fff'
+        },
+        label: ["Animation", "Effects", "Useful"],
+    },
+    {
+        id: utilService.makeId(),
+        type: "note-todos",
+        info: {
+            title: 'Shopping List',
+            todos: [
+                { txt: "Chicken", isDone: false, id: utilService.makeId() },
+                { txt: "Eggs", isDone: true, id: utilService.makeId() },
+                { txt: "Bread", isDone: false, id: utilService.makeId() },
+                { txt: "Vanilla essence", isDone: false, id: utilService.makeId() },
+                { txt: "Pasta", isDone: false, id: utilService.makeId() },
+                { txt: "Ice cream!", isDone: false, id: utilService.makeId() },
+            ]
+        },
+        style: {
+            backgroundColor: "#fb9d74"
+        },
+        label: ["Food", "Groceries"],
+    },
+    {
+        id: utilService.makeId(),
+        type: "note-img",
+        info: {
+            url: "assets/img/diving.jpg",
+            title: "Sinai",
+            txt: 'Great Times, when things were simple'
+        },
+        style: {
+            backgroundColor: "#47d7e1"
+        },
+        label: ["Sinai", "fun", "diving"],
+    },
+    {
+        id: utilService.makeId(),
+        type: "note-img",
+        info: {
+            url: "assets/img/forest.jpg",
+            title: "",
+            txt: ''
+        },
+        style: {
+            backgroundColor: "#378136"
+        },
+        label: [],
     },
 
 ]
@@ -94,9 +194,9 @@ function query(filterBy) {
     }
 
     if (filterBy) {
-        notes = notes.filter(note => (
+        notes = notes.filter((note, idx) => (
             note.info.title.toLowerCase().includes(filterBy.toLowerCase()) ||
-            note.label.includes(filterBy.toLowerCase())
+            note.label.some(labelContent => labelContent.includes(filterBy.toLowerCase()))
         ))
     }
 
@@ -206,13 +306,13 @@ function createNoteTodos(title, todos) {
     return Promise.resolve(notes)
 }
 
-function createNoteVideo(title,txt,url) {
+function createNoteVideo(title, txt, url) {
     const notes = _loadFromStorage()
     let note = {
         id: utilService.makeId(),
         type: "note-video",
         info: {
-            url: addEmbed(url)+'',
+            url: `https://www.youtube.com/embed/${addEmbed(url)}`,
             title: title ? title : '',
             txt: txt ? txt : ''
         },
@@ -227,15 +327,39 @@ function createNoteVideo(title,txt,url) {
 }
 
 function addEmbed(url) {
-    let urlStart = url.substring(0,23)
-    let urlAlmostEnd = url.substring(32)
-    let endIdx = urlAlmostEnd.split('').findIndex(char => char === '=' )+31
-    let urlEnd = url.substring(32,endIdx-1)
-    return urlStart+'/embed/'+urlEnd
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp)
+    if (match && match[7].length == 11) {
+        console.log(match[7])
+        return match[7]
+    } else {
+        alert("Could not extract video ID.");
+    }
 }
 
-function addLabel() {
-    
+function addLabel(noteId, label) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    note.label.push(label)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
 }
+
+function onchangeLabelTxt(noteId, labelIdx, labelTxt) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    note.label[labelIdx] = labelTxt
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
+function onRemoveLabel(noteId, labelIdx) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    note.label.splice(labelIdx, 1)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
 
 

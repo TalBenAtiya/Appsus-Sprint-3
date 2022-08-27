@@ -2,38 +2,45 @@
 import { NoteTxt } from "./note-txt.jsx"
 import { NoteImg } from "./note-img.jsx"
 import { NoteTodos } from "./note-todos.jsx"
-import {NoteEdit} from "./note-edit.jsx"
+import { NoteEdit } from "./note-edit.jsx"
 import { NoteVideo } from "./note-video.jsx"
+import { NoteLabels } from "./note-labels.jsx"
 
-export function NotePreview({ note , onChangeBackgroundColor,onchangeTxt,onchangeTodoTxt,onTodoIsDone,onRemoveNote}) {
+export class NotePreview extends React.Component {
 
-    function noteTemplate() {
+    noteTemplate = () => {
+        const { note, onChangeBackgroundColor, onchangeTxt, onchangeTodoTxt, onTodoIsDone, onRemoveNote, onaddLabel, onchangeLabelTxt,onRemoveLabel } = this.props
         switch (note.type) {
             case 'note-txt':
-                return <div style={{backgroundColor:note.style.backgroundColor}} className="note">
-                    <NoteTxt note={note} onchangeTxt={onchangeTxt}/>
-                    <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote}/>
+                return <div style={{ backgroundColor: note.style.backgroundColor }} className="note">
+                    <NoteTxt note={note} onchangeTxt={onchangeTxt} />
+                    {note.label.length>0 &&<NoteLabels noteId={note.id} labels={note.label} onchangeLabelTxt={onchangeLabelTxt} onRemoveLabel={onRemoveLabel} />}
+                    <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote} onaddLabel={onaddLabel}/>
                 </div>
             case 'note-img':
-                return <div style={{backgroundColor:note.style.backgroundColor}} className="note-img">
-                <NoteImg note={note} onchangeTxt={onchangeTxt}/>
-                <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote}/>
-            </div>
+                return <div style={{ backgroundColor: note.style.backgroundColor }} className="note-img">
+                    <NoteImg note={note} onchangeTxt={onchangeTxt} />
+                    {note.label.length>0 &&<NoteLabels noteId={note.id} labels={note.label} onchangeLabelTxt={onchangeLabelTxt} onRemoveLabel={onRemoveLabel} />}
+                    <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote} onaddLabel={onaddLabel} />
+                </div>
             case 'note-todos':
-                return <div style={{backgroundColor:note.style.backgroundColor}} className="note">
-                <NoteTodos note={note} onchangeTxt={onchangeTxt} onchangeTodoTxt={onchangeTodoTxt} onTodoIsDone={onTodoIsDone}/>
-                <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote}/>
-            </div>
+                return <div style={{ backgroundColor: note.style.backgroundColor }} className="note">
+                    <NoteTodos note={note} onchangeTxt={onchangeTxt} onchangeTodoTxt={onchangeTodoTxt} onTodoIsDone={onTodoIsDone} />
+                    {note.label.length>0 &&<NoteLabels noteId={note.id} labels={note.label} onchangeLabelTxt={onchangeLabelTxt} onRemoveLabel={onRemoveLabel} />}
+                    <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote} onaddLabel={onaddLabel} />
+                </div>
             case 'note-video':
-                return <div style={{backgroundColor:note.style.backgroundColor}} className="note-img">
-                <NoteVideo note={note} onchangeTxt={onchangeTxt}/>
-                <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote}/>
-            </div>
+                return <div style={{ backgroundColor: note.style.backgroundColor }} className="note-img">
+                    <NoteVideo note={note} onchangeTxt={onchangeTxt} />
+                    {note.label.length>0 &&<NoteLabels noteId={note.id} labels={note.label} onchangeLabelTxt={onchangeLabelTxt} onRemoveLabel={onRemoveLabel} />}
+                    <NoteEdit noteId={note.id} onChangeBackgroundColor={onChangeBackgroundColor} onRemoveNote={onRemoveNote} onaddLabel={onaddLabel} />
+                </div>
         }
     }
 
-    return <article className="note-preview">
-        {noteTemplate()}
-        
-    </article>
+    render() {
+        return <article className="note-preview">
+            {this.noteTemplate()}
+        </article>
+    }
 }

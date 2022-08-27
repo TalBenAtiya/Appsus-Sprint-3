@@ -19,6 +19,7 @@
 @import '../css/apps/book/views/book-details.css';
 
 /* Cmps */
+@import './apps/note/cmps/note-labels.css';
 @import './apps/note/cmps/note-add.css';
 @import './apps/note/cmps/note-todo.css';
 @import './apps/note/cmps/note-video.css';

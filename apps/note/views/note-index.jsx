@@ -65,8 +65,23 @@ export class NoteIndex extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-    createNoteVideo = (title,txt,url) => {
-        noteService.createNoteVideo(title,txt,url) 
+    createNoteVideo = (title, txt, url) => {
+        noteService.createNoteVideo(title, txt, url)
+            .then(notes => this.setState({ notes }))
+    }
+
+    onaddLabel = (noteId,label) => {
+        noteService.addLabel(noteId,label)
+        .then(notes => this.setState({ notes }))
+    }
+
+    onchangeLabelTxt = (noteId,labelIdx,labelTxt) => {
+        noteService.onchangeLabelTxt(noteId,labelIdx,labelTxt)
+        .then(notes => this.setState({ notes }))
+    }
+
+    onRemoveLabel = (noteId,labelIdx) => {
+        noteService.onRemoveLabel(noteId,labelIdx)
         .then(notes => this.setState({ notes }))
     }
 
@@ -83,10 +98,13 @@ export class NoteIndex extends React.Component {
             createNoteImg,
             createNoteTodos,
             createNoteVideo,
+            onaddLabel,
+            onchangeLabelTxt,
+            onRemoveLabel,
+            
         } = this
 
         return <section className="note-index main-layout">
-            {/* <AddNote onSetNote={this.onSetAddNote}/> */}
             <div className="filter-and-add-container">
                 <NoteFilter onSetFilter={onSetFilter} />
                 <NoteAdd
@@ -94,7 +112,7 @@ export class NoteIndex extends React.Component {
                     createNoteImg={createNoteImg}
                     createNoteTodos={createNoteTodos}
                     createNoteVideo={createNoteVideo}
-                    />
+                />
             </div>
             <NoteList notes={notes}
                 onChangeBackgroundColor={onChangeBackgroundColor}
@@ -102,6 +120,9 @@ export class NoteIndex extends React.Component {
                 onchangeTodoTxt={onchangeTodoTxt}
                 onTodoIsDone={onTodoIsDone}
                 onRemoveNote={onRemoveNote}
+                onaddLabel={onaddLabel}
+                onchangeLabelTxt={onchangeLabelTxt}
+                onRemoveLabel={onRemoveLabel}
             />
         </section>
     }
