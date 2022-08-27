@@ -4,6 +4,15 @@
     margin-top: 10px;
 }
 
+.details-container>h3 {
+    text-align: center;
+}
+
+.details-container > p {
+    max-width: 800px;
+    text-align: center;
+}
+
 .details-container {
     display: flex;
     flex-direction: column;
@@ -31,10 +40,6 @@
 
 .details-container button img{
     width: 35px;
-}
-
-h2 , h3 , h4 {
-    margin: 0
 }
 
 .book-details .pages-btn {
