@@ -13,15 +13,15 @@ export class NoteTodos extends React.Component {
     }
 
     changeTxt = ({ target }, property) => {
-        this.props.onchangeTxt(this.props.note.id, target.innerText, property)
+        this.props.onchangeTxt(this.props.note.id, target.innerText, property,this.props.note.isPinned)
     }
 
     changeTodosTxt = ({ target }, todoId) => {
-        this.props.onchangeTodoTxt(this.props.note.id, target.innerText, todoId)
+        this.props.onchangeTodoTxt(this.props.note.id, target.innerText, todoId,this.props.note.isPinned)
     }
 
     todoIsDone = (todoId) => {
-        this.props.onTodoIsDone(this.props.note.id, todoId)
+        this.props.onTodoIsDone(this.props.note.id, todoId,this.props.note.isPinned)
     }
 
     render() {

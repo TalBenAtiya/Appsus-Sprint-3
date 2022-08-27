@@ -1,11 +1,11 @@
-export function NoteLabels({noteId, labels , onchangeLabelTxt,onRemoveLabel}) {
+export function NoteLabels({note,noteId, labels , onchangeLabelTxt,onRemoveLabel}) {
 
     function changeLabelTxt({ target }, idx) {
-        onchangeLabelTxt(noteId, idx, target.innerText)
+        onchangeLabelTxt(noteId, idx, target.innerText,note.isPinned)
     }
 
     function removeLabel(idx) {
-        onRemoveLabel(noteId,idx)
+        onRemoveLabel(noteId,idx,note.isPinned)
     }
 
 

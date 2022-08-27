@@ -16,9 +16,12 @@ export const noteService = {
     addLabel,
     onchangeLabelTxt,
     onRemoveLabel,
+    pinnedQuery,
+    onMakePinned,
 }
 
 const KEY = 'notesDB'
+const PINNED_KEY = 'notesDBPinned'
 const gNotes = [
     {
         id: utilService.makeId(),
@@ -36,7 +39,7 @@ const gNotes = [
     {
         id: "n101",
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info: {
             title: 'Fullstack',
             txt: "Fullstack Me Baby!"
@@ -49,6 +52,7 @@ const gNotes = [
     {
         id: "n102",
         type: "note-img",
+        isPinned: false,
         info: {
             url: "assets/img/note-img1.jpg",
             title: "Bobi and Me",
@@ -62,7 +66,7 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info: {
             title: 'important things about flex and grid',
             txt: "content: the template inside items: the items inside the template place: controls template and items place - doesnt work in flex fit content: fits according to the content  justify-content — controls alignment of all items on the main axis. align-items — controls alignment of all items on the cross axis. align-self — controls alignment of an individual flex item on the cross axis. align-content — described in the spec as for packing flex lines; controls space between flex lines on the cross axis. gap, column-gap, and row-gap — used to create gaps or gutters between flex items. We will also discover how auto margins can be used for alignment in flexbox. grid: fill makes more grid places unlike fit"
@@ -75,6 +79,7 @@ const gNotes = [
     {
         id: "n103",
         type: "note-todos",
+        isPinned: false,
         info: {
             title: 'my todos',
             todos: [
@@ -90,6 +95,7 @@ const gNotes = [
     {
         id: "n104",
         type: "note-video",
+        isPinned: false,
         info: {
             url: "https://www.youtube.com/embed/FWy_LbhHtug",
             title: "coding academy",
@@ -103,6 +109,7 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-video",
+        isPinned: false,
         info: {
             url: "https://www.youtube.com/embed/ztVuPGRp5zM",
             title: "Relaxing Music",
@@ -116,6 +123,7 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-txt",
+        isPinned: false,
         isPinned: true,
         info: {
             title: 'animation websites',
@@ -129,6 +137,7 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-todos",
+        isPinned: false,
         info: {
             title: 'Shopping List',
             todos: [
@@ -148,6 +157,7 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-img",
+        isPinned: false,
         info: {
             url: "assets/img/diving.jpg",
             title: "Sinai",
@@ -161,6 +171,7 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-img",
+        isPinned: false,
         info: {
             url: "assets/img/forest.jpg",
             title: "",
@@ -178,67 +189,86 @@ function getNotes() {
     return gNotes
 }
 
-function _saveToStorage(notes) {
-    storageService.saveToStorage(KEY, notes)
+function _saveToStorage(notes,isPinned) {
+    if(isPinned)storageService.saveToStorage(PINNED_KEY,notes)
+    else {storageService.saveToStorage(KEY,notes)}
 }
 
-function _loadFromStorage() {
-    return storageService.loadFromStorage(KEY)
+function _loadFromStorage(isPinned) {
+    if(isPinned)return storageService.loadFromStorage(PINNED_KEY)
+    else{return storageService.loadFromStorage(KEY)}
 }
 
 function query(filterBy) {
-    let notes = _loadFromStorage()
+    let notes = _loadFromStorage(false)
     if (!notes) {
-        notes = getNotes()
-        _saveToStorage(notes)
+        notes = getNotes().filter(note=>!note.isPinned)
+        _saveToStorage(notes,false)
     }
 
     if (filterBy) {
-        notes = notes.filter((note, idx) => (
-            note.info.title.toLowerCase().includes(filterBy.toLowerCase()) ||
-            note.label.some(labelContent => labelContent.includes(filterBy.toLowerCase()))
+        notes = notes.filter((note) => (
+            (note.info.title.toLowerCase().includes(filterBy.toLowerCase()) && !note.isPinned) ||
+        (note.label.some(labelContent => labelContent.includes(filterBy.toLowerCase())) && !note.isPinned)
         ))
     }
 
     return Promise.resolve(notes)
 }
 
-function changeNoteColor(noteId, color) {
-    const notes = _loadFromStorage()
+function pinnedQuery(filterBy) {
+    let notes = _loadFromStorage(true)
+    if (!notes) {
+        notes = getNotes().filter(note => note.isPinned)
+        _saveToStorage(notes,true)
+    }
+
+    if (filterBy) {
+        notes = notes.filter((note) => (
+            (note.info.title.toLowerCase().includes(filterBy.toLowerCase()) && note.isPinned) ||
+        (note.label.some(labelContent => labelContent.includes(filterBy.toLowerCase())) && note.isPinned)
+        ))
+    }
+
+    return Promise.resolve(notes)
+}
+
+function changeNoteColor(noteId, color,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let note = notes.find(note => note.id === noteId)
     note.style.backgroundColor = `${color}`
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
-function onchangeTxt(noteId, txt, property) {
-    const notes = _loadFromStorage()
+function onchangeTxt(noteId, txt, property,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let note = notes.find(note => note.id === noteId)
     note.info[property] = txt
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
-function onchangeTodoTxt(noteId, txt, todoId) {
-    const notes = _loadFromStorage()
+function onchangeTodoTxt(noteId, txt, todoId,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let note = notes.find(note => note.id === noteId)
     let todo = note.info.todos.find(todo => todo.id === todoId)
     todo.txt = txt
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
-function todoIsDone(noteId, todoId) {
-    const notes = _loadFromStorage()
+function todoIsDone(noteId, todoId,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let note = notes.find(note => note.id === noteId)
     let todo = note.info.todos.find(todo => todo.id === todoId)
     todo.isDone = !todo.isDone
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
 function createNoteTxt(title, txt) {
-    const notes = _loadFromStorage()
+    const notes = _loadFromStorage(false)
     let note = {
         id: utilService.makeId(),
         type: "note-txt",
@@ -253,22 +283,22 @@ function createNoteTxt(title, txt) {
         label: [],
     }
     notes.push(note)
-    _saveToStorage(notes)
+    _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
 
-function onRemoveNote(noteId) {
-    const notes = _loadFromStorage()
+function onRemoveNote(noteId,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let idx = notes.findIndex(note => note.id === noteId)
     console.log('idx', idx)
     notes.splice(idx, 1)
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
 
 function createNoteImg(title, txt, url) {
-    const notes = _loadFromStorage()
+    const notes = _loadFromStorage(false)
     let note = {
         id: utilService.makeId(),
         type: "note-img",
@@ -283,12 +313,12 @@ function createNoteImg(title, txt, url) {
         label: [],
     }
     notes.push(note)
-    _saveToStorage(notes)
+    _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
 
 function createNoteTodos(title, todos) {
-    const notes = _loadFromStorage()
+    const notes = _loadFromStorage(false)
     let note = {
         id: utilService.makeId(),
         type: "note-todos",
@@ -302,12 +332,12 @@ function createNoteTodos(title, todos) {
         label: [],
     }
     notes.push(note)
-    _saveToStorage(notes)
+    _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
 
 function createNoteVideo(title, txt, url) {
-    const notes = _loadFromStorage()
+    const notes = _loadFromStorage(false)
     let note = {
         id: utilService.makeId(),
         type: "note-video",
@@ -322,7 +352,7 @@ function createNoteVideo(title, txt, url) {
         label: [],
     }
     notes.push(note)
-    _saveToStorage(notes)
+    _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
 
@@ -337,29 +367,39 @@ function addEmbed(url) {
     }
 }
 
-function addLabel(noteId, label) {
-    const notes = _loadFromStorage()
+function addLabel(noteId, label,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let note = notes.find(note => note.id === noteId)
     note.label.push(label)
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
-function onchangeLabelTxt(noteId, labelIdx, labelTxt) {
-    const notes = _loadFromStorage()
+function onchangeLabelTxt(noteId, labelIdx, labelTxt,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let note = notes.find(note => note.id === noteId)
     note.label[labelIdx] = labelTxt
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
-function onRemoveLabel(noteId, labelIdx) {
-    const notes = _loadFromStorage()
+function onRemoveLabel(noteId, labelIdx,isPinned) {
+    const notes = _loadFromStorage(isPinned)
     let note = notes.find(note => note.id === noteId)
     note.label.splice(labelIdx, 1)
-    _saveToStorage(notes)
+    _saveToStorage(notes,isPinned)
     return Promise.resolve(notes)
 }
 
+function onMakePinned(noteId,isPinned) {
+    const notesFrom = _loadFromStorage(isPinned)
+    const notesTo = _loadFromStorage(!isPinned)
+    console.log('notes to',notesTo,'notes from',notesFrom)
+    notesTo.push(notesFrom.splice(notesFrom.findIndex(note=>note.id===noteId),1)[0])
+    console.log('notes to',notesTo,'notes from',notesFrom)
+    _saveToStorage(notesFrom,isPinned)
+    _saveToStorage(notesTo,!isPinned)
+    return Promise.resolve()
+}
 
 

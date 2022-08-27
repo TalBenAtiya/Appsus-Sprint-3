@@ -1,14 +1,14 @@
 // import { utilService } from "../../../services/util.service"
 import { noteService } from "../services/note.service.js"
-export function NoteEdit({ noteId, onChangeBackgroundColor, onRemoveNote,onaddLabel }) {
+export function NoteEdit({ note,noteId, onChangeBackgroundColor, onRemoveNote,onaddLabel,onMakePinned }) {
 
     function changeColor({ target }) {
-        onChangeBackgroundColor(noteId, target.value)
+        onChangeBackgroundColor(noteId, target.value,note.isPinned)
     }
 
     function removeNote(noteId) {
         console.log(noteId, 'id')
-        onRemoveNote(noteId)
+        onRemoveNote(noteId,note.isPinned)
     }
 
     return <section className="note-edit">
@@ -20,7 +20,10 @@ export function NoteEdit({ noteId, onChangeBackgroundColor, onRemoveNote,onaddLa
             <img src="assets/svg/trash-icon.svg" alt="" />
         </div>
         <div className="add-label">
-            <img onClick={()=> onaddLabel(noteId,'')} src="assets/img/add-tag-icon.png" alt="" />
+            <img onClick={()=> onaddLabel(noteId,'',note.isPinned)} src="assets/img/add-tag-icon.png" alt="" />
+        </div>
+        <div className="make-pinned">
+            <img onClick={()=> onMakePinned(noteId,note.isPinned)} src="assets/svg/pin-note-icon.svg" alt="" />
         </div>
     </section>
 
