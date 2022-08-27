@@ -6,6 +6,7 @@ header {
 .app-header {
     padding: 20px 0;
     border-bottom: 2px solid rgb(172, 172, 172);
+    
 }
 
 .app-header div {
@@ -51,7 +52,7 @@ nav {
     z-index: 2000;
     text-align: center;
     gap: 25px;
-    
+    overflow-x: hidden; 
 }
 
 nav :first-child {

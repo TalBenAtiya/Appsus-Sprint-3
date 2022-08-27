@@ -18,10 +18,9 @@
     width: 70%;
     height: 400px;
     padding: 20px;
-    background-color: rgb(36, 36, 36);
-    color: var(--clr-default);
+    color: rgb(36, 36, 36);
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .about-info p {
