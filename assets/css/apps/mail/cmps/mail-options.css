@@ -24,9 +24,21 @@
 }
 
 .user-options {
-    display: flex;
+    width: 0;
+    overflow: hidden;
     flex-direction: column;
     margin-top: 90px;
+    z-index: 100;
+}
+
+.user-options.open {
+    width: 20%;
+    position: fixed;
+    margin-top: 80px;
+    height: 100%;
+    overflow: visible;
+    background-color: var(--clr-default);
+    width: fit-content;
 }
 
 
@@ -54,4 +66,17 @@
 
 .unread-mails:hover {
     color: rgb(254, 92, 125);
+}
+
+@media (min-width: 750px) {
+    .user-options {
+        width: fit-content;
+        overflow: visible;
+        display: flex;
+        z-index: 0;
+    }
+
+    .mail-hamburger {
+        display: none;
+    }
 }

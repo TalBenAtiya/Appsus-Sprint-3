@@ -1,10 +1,10 @@
 import { MailCompose } from "../cmps/mail-compose.jsx"
 const { NavLink } = ReactRouterDOM
 
-export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal, sortMails }) {
+export function MailOptions({ onSetFilter, getUnreadMails, openComposeModal, sortMails,  getToggleClass }) {
 
 
-    return <section className="user-options">
+    return <section className={getToggleClass()}>
         <button onClick={openComposeModal} className="compose">
             <img src="assets/img/write.png" />
             Compose

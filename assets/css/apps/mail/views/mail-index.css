@@ -47,3 +47,18 @@
 }
 
 
+.mail-hamburger {
+    height: 40px;
+    width: 80px;
+    padding: 5px;
+    position: fixed;
+    top: 128px;
+    border: none;
+    object-fit: cover;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mail-hamburger:hover {
+    transform: scale(1.1);
+}

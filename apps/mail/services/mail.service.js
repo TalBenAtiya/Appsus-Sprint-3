@@ -36,7 +36,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['starred',]
 },
 {
     img: '',
@@ -58,7 +58,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['starred',]
 },
 {
     img: '',
@@ -69,7 +69,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['starred',]
 },
 {
     img: '',
@@ -91,7 +91,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['important',]
 },
 {
     img: '',
@@ -124,7 +124,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['starred',]
 },
 {
     img: '',
@@ -135,7 +135,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['important',]
 },
 {
     img: '',
@@ -157,7 +157,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['important',]
 },
 {
     img: '',
@@ -168,7 +168,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['starred',]
 },
 {
     img: '',
@@ -190,7 +190,7 @@ const gMails = [{
     isRead: false,
     sentAt: new Date().getTime(),
     to: 'momo@momo.com',
-    labels: []
+    labels: ['starred',]
 },
 {
     img: '',
@@ -201,7 +201,7 @@ const gMails = [{
     isRead: false,
     sentAt: 1661510823500,
     to: 'momo@momo.com',
-    labels: []
+    labels: ['important',]
 },
 {
     img: '',

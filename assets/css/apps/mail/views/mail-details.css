@@ -59,7 +59,7 @@
     align-self: center;
 }
 
-.details-container {
+.details-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
