@@ -3,7 +3,9 @@ import { Footer } from "../cmps/footer.jsx";
 export function About() {
     return <section className="about main-layout">
         <div className="about-container">
-            <h1>Who We Are</h1>
+            <h1>Who We Are: We are two students who love programing.
+                We live in israel 
+            </h1>
             <div className="about-info">
                 <p><span>Appsus</span> is a web apllication for private use that,
                 allows free use of different apps.

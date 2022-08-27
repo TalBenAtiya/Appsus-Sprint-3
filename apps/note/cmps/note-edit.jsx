@@ -1,18 +1,21 @@
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../../mail/services/mail.service.js"
 
-export class NoteEdit extends React.Component {
+const  { withRouter }   = ReactRouterDOM
+
+class _NoteEdit extends React.Component {
 
     changeColor = ({ target }) => {
 
-        onChangeBackgroundColor(this.props.noteId, target.value, this.props.note.isPinned)
+        this.props.onChangeBackgroundColor(this.props.noteId, target.value, this.props.note.isPinned)
     }
 
     removeNote = (noteId) => {
-        onRemoveNote(noteId, this.props.note.isPinned)
+        this.props.onRemoveNote(noteId, this.props.note.isPinned)
     }
 
     sendNoteAsMail = () => {
+        console.log(this.props)
         const email = prompt('Send to? (Email address...)')
         const { note } = this.props
         const mail = {
@@ -26,15 +29,15 @@ export class NoteEdit extends React.Component {
             img: '',
             sentFrom: email,
         }
-
+        
         if (note.type === 'note-img') {
             mail.img = note.info.url
         }
-        mailService.sendMail(mail).then(() => this.context.history.push('/mail'))
+        mailService.sendMail(mail).then(() => this.props.history.push('/mail'))
     }
 
     render() {
-        const { changeColor, removeNote, sendNoteAsMail } = this
+        const { changeColor,removeNote, sendNoteAsMail } = this
         const { onaddLabel, onMakePinned, note, noteId } = this.props
         return <section className="note-edit">
             <div className="input-color-container">
@@ -58,4 +61,4 @@ export class NoteEdit extends React.Component {
 
 }
 
-// { note,noteId, onChangeBackgroundColor, onRemoveNote,onaddLabel,onMakePinned }
+export const NoteEdit = withRouter(_NoteEdit)
