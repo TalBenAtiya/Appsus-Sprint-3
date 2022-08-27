@@ -39,7 +39,7 @@ nav a.active {
 nav {
     width: 100%;
     display: flex;
-    position: fixed;
+    position: absolute;
     flex-direction: column;
     top: 100px;
     right: 0;
@@ -72,6 +72,7 @@ nav :first-child {
     .app-hamburger-icon {
         display: none;
     }
+
     nav {
         display: flex;
         position: unset;

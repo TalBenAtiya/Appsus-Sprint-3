@@ -16,10 +16,10 @@ export const mailService = {
 const KEY = 'emailsDB'
 
 const gMails = [{
-    img: '',
-    sentFrom: 'Github',
+    img: 'assets/img/appsus-logo.png',
+    sentFrom: 'Appsus',
     id: utilService.makeId(),
-    subject: utilService.makeLorem(2),
+    subject: 'Welcome to Appsus',
     body: utilService.makeLorem(),
     isRead: false,
     sentAt: new Date().getTime(),
@@ -50,7 +50,7 @@ const gMails = [{
 },
 {
     img: '',
-    sentFrom: 'Pinterest',
+    sentFrom: 'Github',
     id: utilService.makeId(),
     subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
@@ -116,7 +116,7 @@ const gMails = [{
 },
 {
     img: '',
-    sentFrom: 'Tal Ben Atiya',
+    sentFrom: 'Pinterest',
     id: utilService.makeId(),
     subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
@@ -127,7 +127,7 @@ const gMails = [{
 },
 {
     img: '',
-    sentFrom: 'Tal Ben Atiya',
+    sentFrom: 'Instagram',
     id: utilService.makeId(),
     subject: utilService.makeLorem(1),
     body: utilService.makeLorem(),
@@ -138,7 +138,7 @@ const gMails = [{
 },
 {
     img: '',
-    sentFrom: 'Tal Ben Atiya',
+    sentFrom: 'Stremio',
     id: utilService.makeId(),
     subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
@@ -149,7 +149,7 @@ const gMails = [{
 },
 {
     img: '',
-    sentFrom: 'Tal Ben Atiya',
+    sentFrom: 'Google',
     id: utilService.makeId(),
     subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),
@@ -160,7 +160,7 @@ const gMails = [{
 },
 {
     img: '',
-    sentFrom: 'Tal Ben Atiya',
+    sentFrom: 'Call Of Duty',
     id: utilService.makeId(),
     subject: utilService.makeLorem(3),
     body: utilService.makeLorem(),
@@ -171,7 +171,7 @@ const gMails = [{
 },
 {
     img: '',
-    sentFrom: 'Tal Ben Atiya',
+    sentFrom: 'Gal Wender',
     id: utilService.makeId(),
     subject: utilService.makeLorem(2),
     body: utilService.makeLorem(),

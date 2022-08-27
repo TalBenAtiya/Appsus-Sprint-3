@@ -11,13 +11,9 @@
     display: flex;
     align-items: center;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     justify-content: space-between;
-
 }
-/* .note-add-box > *:not(:)  { */
-    /* justify-content: flex-end; */
-/* } */
 
 .note-add {
     width: 60%;
