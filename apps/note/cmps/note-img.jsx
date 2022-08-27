@@ -1,7 +1,7 @@
 export function NoteImg ({note,onchangeTxt}) {
 
     function changeTxt({target},property) {
-        onchangeTxt(note.id,target.innerText,property)
+        onchangeTxt(note.id,target.innerText,property,note.isPinned)
     }
 
     return <section className="note-image">

@@ -1,5 +1,5 @@
 import { NotePreview } from './note-preview.jsx'
-export function NoteList({ notes, onChangeBackgroundColor, onchangeTxt, onchangeTodoTxt, onTodoIsDone, onRemoveNote, onaddLabel,onchangeLabelTxt,onRemoveLabel }) {
+export function NoteList({ notes, onChangeBackgroundColor, onchangeTxt, onchangeTodoTxt, onTodoIsDone, onRemoveNote, onaddLabel,onchangeLabelTxt,onRemoveLabel,onMakePinned }) {
     return <section className="note-list">
         {notes.map(note =>
             <div className='note-preview' key={note.id}><NotePreview
@@ -12,8 +12,8 @@ export function NoteList({ notes, onChangeBackgroundColor, onchangeTxt, onchange
                 onaddLabel={onaddLabel}
                 onchangeLabelTxt={onchangeLabelTxt}
                 onRemoveLabel={onRemoveLabel}
+                onMakePinned={onMakePinned}
             />
-                {/* adding here , maybe*/}
             </div>
         )}
     </section>

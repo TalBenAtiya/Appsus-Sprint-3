@@ -15,6 +15,12 @@ export class NoteIndex extends React.Component {
 
     componentDidMount() {
         this.loadNotes()
+        this.loadPinned()
+    }
+
+    loadPinned = () => {
+        noteService.pinnedQuery(this.state.filterBy)
+            .then((notes) => this.setState({ pinned: notes }))
     }
 
     loadNotes = () => {
@@ -22,70 +28,111 @@ export class NoteIndex extends React.Component {
             .then((notes) => this.setState({ notes }))
     }
 
-    onChangeBackgroundColor = (noteId, color) => {
-        noteService.changeNoteColor(noteId, color)
-            .then((notes) => this.setState({ notes }))
+    onChangeBackgroundColor = (noteId, color, isPinned) => {
+        noteService.changeNoteColor(noteId, color, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
     onSetFilter = (filterBy) => {
         this.setState({ filterBy }, () => {
             this.loadNotes()
+            this.loadPinned()
         })
     }
 
-    onchangeTxt = (noteId, txt, property) => {
-        noteService.onchangeTxt(noteId, txt, property)
-            .then((notes) => this.setState({ notes }))
+    onchangeTxt = (noteId, txt, property, isPinned) => {
+        noteService.onchangeTxt(noteId, txt, property, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
-    onchangeTodoTxt = (noteId, txt, todoId) => {
-        noteService.onchangeTodoTxt(noteId, txt, todoId)
-            .then((notes) => this.setState({ notes }))
+    onchangeTodoTxt = (noteId, txt, todoId, isPinned) => {
+        noteService.onchangeTodoTxt(noteId, txt, todoId, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
-    onTodoIsDone = (noteId, todoId) => {
-        noteService.todoIsDone(noteId, todoId)
-            .then((notes) => this.setState({ notes }))
+    onTodoIsDone = (noteId, todoId, isPinned) => {
+        noteService.todoIsDone(noteId, todoId, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
     createNoteTxt = (title, txt) => {
         noteService.createNoteTxt(title, txt)
-            .then((notes) => this.setState({ notes }))
+            .then((notes) => {
+                this.loadNotes()
+            })
     }
 
-    onRemoveNote = (noteId) => {
-        noteService.onRemoveNote(noteId)
-            .then(notes => this.setState({ notes }))
+    onRemoveNote = (noteId, isPinned) => {
+        noteService.onRemoveNote(noteId, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
     createNoteImg = (title, txt, url) => {
         noteService.createNoteImg(title, txt, url)
-            .then(notes => this.setState({ notes }))
+            .then((notes) => {
+                this.loadNotes()
+            })
     }
 
     createNoteTodos = (title, todos) => {
         noteService.createNoteTodos(title, todos)
-            .then(notes => this.setState({ notes }))
+            .then((notes) => {
+                this.loadNotes()
+            })
     }
 
     createNoteVideo = (title, txt, url) => {
         noteService.createNoteVideo(title, txt, url)
-            .then(notes => this.setState({ notes }))
+            .then((notes) => {
+                this.loadNotes()
+            })
     }
 
-    onaddLabel = (noteId, label) => {
-        noteService.addLabel(noteId, label)
-            .then(notes => this.setState({ notes }))
+    onaddLabel = (noteId, label, isPinned) => {
+        noteService.addLabel(noteId, label, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
-    onchangeLabelTxt = (noteId, labelIdx, labelTxt) => {
-        noteService.onchangeLabelTxt(noteId, labelIdx, labelTxt)
-            .then(notes => this.setState({ notes }))
+    onchangeLabelTxt = (noteId, labelIdx, labelTxt, isPinned) => {
+        noteService.onchangeLabelTxt(noteId, labelIdx, labelTxt, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
-    onRemoveLabel = (noteId, labelIdx) => {
-        noteService.onRemoveLabel(noteId, labelIdx)
-            .then(notes => this.setState({ notes }))
+    onRemoveLabel = (noteId, labelIdx, isPinned) => {
+        noteService.onRemoveLabel(noteId, labelIdx, isPinned)
+            .then((notes) => {
+                this.loadNotes()
+                this.loadPinned()
+            })
+    }
+
+    onMakePinned = (noteId, isPinned) => {
+        noteService.onMakePinned(noteId, isPinned)
+            .then(() => {
+                this.loadNotes()
+                this.loadPinned()
+            })
     }
 
 
@@ -105,6 +152,7 @@ export class NoteIndex extends React.Component {
             onaddLabel,
             onchangeLabelTxt,
             onRemoveLabel,
+            onMakePinned,
 
         } = this
 
@@ -118,17 +166,22 @@ export class NoteIndex extends React.Component {
                     createNoteVideo={createNoteVideo}
                 />
             </div>
-            {pinned.length > 0 && <PinnedNotes
-                notes={pinned}
-                onChangeBackgroundColor={onChangeBackgroundColor}
-                onchangeTxt={onchangeTxt}
-                onchangeTodoTxt={onchangeTodoTxt}
-                onTodoIsDone={onTodoIsDone}
-                onRemoveNote={onRemoveNote}
-                onaddLabel={onaddLabel}
-                onchangeLabelTxt={onchangeLabelTxt}
-                onRemoveLabel={onRemoveLabel}
-            />}
+            {pinned.length > 0 && <div>
+                <h4>Pinned</h4>
+                <PinnedNotes
+                    notes={pinned}
+                    onChangeBackgroundColor={onChangeBackgroundColor}
+                    onchangeTxt={onchangeTxt}
+                    onchangeTodoTxt={onchangeTodoTxt}
+                    onTodoIsDone={onTodoIsDone}
+                    onRemoveNote={onRemoveNote}
+                    onaddLabel={onaddLabel}
+                    onchangeLabelTxt={onchangeLabelTxt}
+                    onRemoveLabel={onRemoveLabel}
+                    onMakePinned={onMakePinned}
+                />
+            </div>}
+            <h4 className="">Unpinned</h4>
             <NoteList notes={notes}
                 onChangeBackgroundColor={onChangeBackgroundColor}
                 onchangeTxt={onchangeTxt}
@@ -138,6 +191,7 @@ export class NoteIndex extends React.Component {
                 onaddLabel={onaddLabel}
                 onchangeLabelTxt={onchangeLabelTxt}
                 onRemoveLabel={onRemoveLabel}
+                onMakePinned={onMakePinned}
             />
         </section>
     }

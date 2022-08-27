@@ -15,9 +15,9 @@ header {
 }
 
 nav a {
-    margin-inline-start: 1em;
-    font-size: 20px;
-    padding-bottom: 10px;
+
+    font-size: 22px;
+    padding-bottom: 25px;
 }
 
 nav a:hover {
@@ -34,4 +34,76 @@ nav a.active {
     color: var(--clr-main);
     font-family: oleo;
     font-size: 40px;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    top: 100px;
+    right: 0;
+    background-color: rgb(36, 37, 37);
+    height: calc(100vh - 55px);
+    transition: transform .6s, box-shadow .6s;
+    transform: translateX(100%);
+    color: white;
+    z-index: 2000;
+    text-align: center;
+    gap: 25px;
+    
+}
+
+nav :first-child {
+    margin-top: 25px;
+}
+
+.app-hamburger-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.menu-opened{
+    transform: translateX(0%);
+}
+
+@media (min-width:580px){
+    .app-hamburger-icon {
+        display: none;
+    }
+
+    /* nav { */
+        /* position: static; */
+        /* flex-direction: row; */
+        /* width: fit-content; */
+        /* gap: 10px; */
+        /* background-color: none; */
+        /* height: fit-content; */
+        
+    /* } */
+    nav {
+        display: flex;
+        position: unset;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        top: 0;
+        right: 0;
+        height: 55px;
+        transform: translate(0);
+        background-color: transparent;
+        color: rgb(36, 37, 37);
+        
+        
+    }
+
+    nav :first-child {
+        margin-top: 0px;
+    }
+
+    nav a {
+        padding-bottom: 10px;
+        padding-top: 5px;
+    }
 }

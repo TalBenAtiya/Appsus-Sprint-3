@@ -1,6 +1,4 @@
 import { NoteList } from "../cmps/note-list.jsx"
-import { NoteFilter } from "../cmps/notes-filter.jsx"
-import { NoteAdd } from "../cmps/note-add.jsx"
 export function PinnedNotes(
     {
         notes,
@@ -12,6 +10,7 @@ export function PinnedNotes(
         onaddLabel,
         onchangeLabelTxt,
         onRemoveLabel,
+        onMakePinned,
     }
 ) {
     return <section className="note-index pinned">
@@ -24,6 +23,7 @@ export function PinnedNotes(
             onaddLabel={onaddLabel}
             onchangeLabelTxt={onchangeLabelTxt}
             onRemoveLabel={onRemoveLabel}
+            onMakePinned={onMakePinned}
         />
     </section>
 }
