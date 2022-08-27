@@ -3,7 +3,8 @@ import { Footer } from "../cmps/footer.jsx"
 
 export function Home() {
 
-    return <section className="home main-layout">
+    return <div>
+     <section className="home main-layout">
         <h1>Welcome to <span>Appsus</span></h1>
         <p>Appsus is a multifuntcional application that includes all of your favorite applications in ONE </p>
         <div className="home-img-container">
@@ -26,6 +27,7 @@ export function Home() {
                 </div>
             </Link>
         </div>
-        <Footer />
     </section>
+        <Footer />
+    </div>
 }
