@@ -2,12 +2,15 @@ import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteFilter } from "../cmps/notes-filter.jsx"
 import { NoteAdd } from "../cmps/note-add.jsx"
+import { PinnedNotes } from "../cmps/pinned-notes.jsx"
+
 
 export class NoteIndex extends React.Component {
 
     state = {
         notes: [],
         filterBy: null,
+        pinned: []
     }
 
     componentDidMount() {
@@ -70,23 +73,24 @@ export class NoteIndex extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-    onaddLabel = (noteId,label) => {
-        noteService.addLabel(noteId,label)
-        .then(notes => this.setState({ notes }))
+    onaddLabel = (noteId, label) => {
+        noteService.addLabel(noteId, label)
+            .then(notes => this.setState({ notes }))
     }
 
-    onchangeLabelTxt = (noteId,labelIdx,labelTxt) => {
-        noteService.onchangeLabelTxt(noteId,labelIdx,labelTxt)
-        .then(notes => this.setState({ notes }))
+    onchangeLabelTxt = (noteId, labelIdx, labelTxt) => {
+        noteService.onchangeLabelTxt(noteId, labelIdx, labelTxt)
+            .then(notes => this.setState({ notes }))
     }
 
-    onRemoveLabel = (noteId,labelIdx) => {
-        noteService.onRemoveLabel(noteId,labelIdx)
-        .then(notes => this.setState({ notes }))
+    onRemoveLabel = (noteId, labelIdx) => {
+        noteService.onRemoveLabel(noteId, labelIdx)
+            .then(notes => this.setState({ notes }))
     }
+
 
     render() {
-        const { notes } = this.state
+        const { notes, pinned } = this.state
         const {
             onChangeBackgroundColor,
             onSetFilter,
@@ -101,7 +105,7 @@ export class NoteIndex extends React.Component {
             onaddLabel,
             onchangeLabelTxt,
             onRemoveLabel,
-            
+
         } = this
 
         return <section className="note-index main-layout">
@@ -114,6 +118,17 @@ export class NoteIndex extends React.Component {
                     createNoteVideo={createNoteVideo}
                 />
             </div>
+            {pinned.length > 0 && <PinnedNotes
+                notes={pinned}
+                onChangeBackgroundColor={onChangeBackgroundColor}
+                onchangeTxt={onchangeTxt}
+                onchangeTodoTxt={onchangeTodoTxt}
+                onTodoIsDone={onTodoIsDone}
+                onRemoveNote={onRemoveNote}
+                onaddLabel={onaddLabel}
+                onchangeLabelTxt={onchangeLabelTxt}
+                onRemoveLabel={onRemoveLabel}
+            />}
             <NoteList notes={notes}
                 onChangeBackgroundColor={onChangeBackgroundColor}
                 onchangeTxt={onchangeTxt}
