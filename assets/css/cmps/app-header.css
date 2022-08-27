@@ -35,3 +35,14 @@ nav a.active {
     font-family: oleo;
     font-size: 40px;
 }
+
+.app-header div {
+    display: flex;
+}
+
+.app-header img {
+    bottom: -10px;
+    position: relative;
+    width: 60px;
+    margin-inline-start: 5px;
+}

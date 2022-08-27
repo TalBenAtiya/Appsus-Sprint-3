@@ -48,7 +48,6 @@ export class MailCompose extends React.Component {
     render() {
     const {onCloseModal} = this.props
     const { mail } = this.state
-    console.log(this.inputRef);
 
 
         return <div className="send-mail flex">

@@ -1,16 +1,29 @@
 import { mailService } from "../services/mail.service.js"
 import { MailOptions } from "../cmps/mail-options.jsx"
-
+import { noteService } from "../../note/services/note.service.js"
+ 
 
 export class MailDetails extends React.Component {
 
     state = {
         mail: null,
-        isCompose: false,
+        isReplay: false,
     }
 
     componentDidMount() {
         this.loadMail()
+    }
+
+    makeMailAsImgNote = () => {
+        const { mail } = this.state
+        noteService.createNoteImg(mail.subject, mail.body, mail.img)
+        .then(() => this.props.history.push('/note'))
+    }
+
+    makeMailAsTxtNote = () => {
+        const { mail } = this.state
+        noteService.createNoteTxt(mail.subject, mail.body)
+        .then(() => this.props.history.push('/note'))
     }
 
     loadMail = () => {
@@ -23,17 +36,20 @@ export class MailDetails extends React.Component {
             })
     }
 
+    onReplay = () => {
+        this.setState({isReplay: true})
+    }
+
     onGoBack = () => {
         this.props.history.push('/mail')
     }
 
     render() {
-        const { mail, isCompose } = this.state
+        const { mail, isReplay } = this.state
         if (!mail) return <span></span>
         console.log(mail);
 
         return <section className="mail-details-container main-layout">
-            {/* <MailOptions onGoBack={this.onGoBack}/> */}
             <section className="mail-details">
                 <div className="details-info">
                     <div>
@@ -52,7 +68,10 @@ export class MailDetails extends React.Component {
                 </article>
                 <div className="details-btns">
                     <button onClick={this.onGoBack}>Go Back</button>
-                    {/* <button className="replay">Replay →</button> */}
+                    <div>
+                    <img title="Make As Text Note" src="assets/img/note.png" className="make-mail-note" onClick={this.makeMailAsTxtNote} />
+                    <img title="Make As Image Note" src="assets/img/draw.png" className="make-mail-note" onClick={this.makeMailAsImgNote} />
+                    </div>
                 </div>
             </section>
         </section>

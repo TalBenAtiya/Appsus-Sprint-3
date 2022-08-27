@@ -1,5 +1,6 @@
 import { utilService } from "../../../services/util.service.js"
 import { storageService } from "../../../services/storage.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export const mailService = {
     query,
@@ -11,8 +12,6 @@ export const mailService = {
     sendToTrash,
     getUnreadMails,
 }
-
-console.log(new Date().getTime());
 
 const KEY = 'emailsDB'
 
@@ -279,10 +278,10 @@ function sendToTrash(mailId) {
     let mail = mails.find(mail => mail.id === mailId)
     if (!mail.labels.includes('trash')) {
         mail.labels = ['trash']
-        console.log(mail);
     } else {
         const mailIdx = mails.findIndex(mail => mail.id === mailId) 
         mails.splice(mailIdx, 1)
+        showSuccessMsg('Mail Deleted!')
     }
     _saveToStorage(mails)
     return Promise.resolve()
