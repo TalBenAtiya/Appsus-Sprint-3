@@ -2,6 +2,7 @@ import { MailList } from "../cmps/mail-list.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailOptions } from "../cmps/mail-options.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { Link } = ReactRouterDOM
 
@@ -59,7 +60,8 @@ export class MailIndex extends React.Component {
 
     trashMail = (mailId) => {
         mailService.sendToTrash(mailId)
-            .then(() => this.loadMails())
+            .then(() => {
+                this.loadMails() })
     }
 
     openComposeModal = () => {
@@ -82,6 +84,7 @@ export class MailIndex extends React.Component {
             this.loadMails()
         })
         this.onCloseModal()
+        showSuccessMsg('Mail Sent!')
     }
 
     starToggle = (mailId) => {

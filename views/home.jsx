@@ -1,4 +1,5 @@
 const { Link } = ReactRouterDOM
+import { Footer } from "../cmps/footer.jsx"
 
 export function Home() {
 
@@ -25,5 +26,6 @@ export function Home() {
                 </div>
             </Link>
         </div>
+        <Footer />
     </section>
 }

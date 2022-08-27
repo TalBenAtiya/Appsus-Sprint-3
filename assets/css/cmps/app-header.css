@@ -97,3 +97,14 @@ nav :first-child {
         padding-top: 5px;
     }
 }
+
+.app-header div {
+    display: flex;
+}
+
+.app-header img {
+    bottom: -10px;
+    position: relative;
+    width: 60px;
+    margin-inline-start: 5px;
+}

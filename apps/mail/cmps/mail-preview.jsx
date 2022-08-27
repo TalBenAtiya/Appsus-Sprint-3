@@ -44,11 +44,10 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle, t
     trashMail(mailId)
   }
 
-
     return <Link to={"/mail/" + mail.id}> <article onClick={() => onReadMail(mail.id)} className={getMailClass(mail)}>
       <section className="label-btns">
-      <button onClick={(ev) => onSetStar(ev, mail.id)} className="star"><img src={setStarImg()} /></button>
-      <button onClick={(ev) => onSetImportant(ev, mail.id)} className="important"><img src={setImprotantImg()} /></button>
+      <button title="Set Starred" onClick={(ev) => onSetStar(ev, mail.id)} className="star"><img src={setStarImg()} /></button>
+      <button title="Set Important" onClick={(ev) => onSetImportant(ev, mail.id)} className="important"><img src={setImprotantImg()} /></button>
       </section>
       <section className="mail-info">
       <div className="sent-from"> {mail.sentFrom}</div>
@@ -56,7 +55,7 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle, t
       <div className="mail-body">{mail.body}</div>
       </section>
       <div className="sent-at">{utilService.getDate(mail.sentAt)}
-      <button onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/svg/trash-icon.svg"/></button>
+      <button title="Send To Trash" onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/svg/trash-icon.svg"/></button>
       </div>
     </article></Link>
  

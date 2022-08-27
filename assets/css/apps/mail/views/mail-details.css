@@ -23,6 +23,7 @@
     background-color: var(--clr-default);
     padding: 20px;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .mail-details button {
@@ -45,6 +46,11 @@
     justify-content: space-between;
 }
 
+.details-btns div {
+    display: flex;
+    align-self: flex-end;
+}
+
 .mail-details article {
     display: flex;
     flex-direction: column;
@@ -63,4 +69,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.make-mail-note {
+    margin-inline-end: 20px;
+    width: 45px;
+    cursor: pointer;
 }
