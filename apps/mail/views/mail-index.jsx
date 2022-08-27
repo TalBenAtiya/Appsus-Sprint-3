@@ -12,6 +12,7 @@ export class MailIndex extends React.Component {
         isCompose: false,
         filterBy: 'inbox',
         searchBy: '',
+        userSettings: 'closed',
     }
 
     componentDidMount() {
@@ -28,6 +29,7 @@ export class MailIndex extends React.Component {
     }
 
     onSetFilter = (filterBy) => {
+        this.closeUserSettings()
         this.setState({ filterBy }, () => {
             this.loadMails()
         })
@@ -39,13 +41,18 @@ export class MailIndex extends React.Component {
         })
     }
 
+    closeUserSettings = () => {
+        this.setState({userSettings: 'closed'})
+    }
+
     sortMails = ({target}) => {
+        this.closeUserSettings()
         const sortOpt = target.id
         const { mails } = this.state
         
        if (!target.checked) this.loadMails()
    
-        if (sortOpt === 'abc') mails.sort((mailA, mailB) => mailA.subject.toUpperCase() > mailB.subject.toUpperCase() ? 1 : -1)
+        if (sortOpt === 'abc') mails.sort((mailA, mailB) => mailA.sentFrom.toUpperCase() > mailB.sentFrom.toUpperCase() ? 1 : -1)
         if (sortOpt === 'date') mails.sort((mailA, mailB) => mailA.sentAt - mailB.sentAt ? -1 : 1 )
         this.setState({mails})
     }
@@ -56,6 +63,7 @@ export class MailIndex extends React.Component {
     }
 
     openComposeModal = () => {
+        this.closeUserSettings()
         this.setState({ isCompose: true })
     }
 
@@ -89,13 +97,30 @@ export class MailIndex extends React.Component {
         )
     }
 
+    getToggleClass = () => {
+        let optsClass = 'user-options'
+        if (this.state.userSettings === 'open') {
+            optsClass = 'user-options open'
+        }
+        return optsClass
+    }
+
+    toggleUserSettings = () => {
+        if (this.state.userSettings === 'closed') {
+            this.setState({userSettings:'open'})
+        } else if (this.state.userSettings === 'open') {
+            this.setState({userSettings:'closed'})
+        } 
+    }
+
     render() {
         const { mails, isCompose } = this.state
         if (!mails) return <span></span>
 
         return <section className="mail-index main-layout">
+          <img onClick={this.toggleUserSettings} className="mail-hamburger" src="assets/img/mail-hamburger.png" alt="" />
             <MailOptions onSetFilter={this.onSetFilter} mails={mails} getUnreadMails={this.getUnreadMails}
-                openComposeModal={this.openComposeModal} isCompose={isCompose} sortMails={this.sortMails} />
+                openComposeModal={this.openComposeModal} isCompose={isCompose} sortMails={this.sortMails}  getToggleClass={this.getToggleClass} />
 
             <div className="list-container">
                 <input className="search-bar" onChange={this.onSearchBy} type="search" placeholder="Search..." />

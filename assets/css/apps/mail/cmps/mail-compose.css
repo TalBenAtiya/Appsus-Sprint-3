@@ -1,10 +1,10 @@
 .send-mail {
-    width: 600px;
+    width: 350px;
     flex-direction: column;
     background-color: var(--clr-main);
     position: fixed;
     bottom: 10px;
-    left: 20%;
+    left: 5px;
     border-right: 1px solid var(--clr-main) ;
     border-left: 1px solid var(--clr-main) ;
     border-bottom: 1px solid var(--clr-main) ;
@@ -97,4 +97,12 @@
 
 .send-mail .mail-img-area {
     width: 200px;
+}
+
+
+@media (min-width: 750px) {
+    .send-mail{
+        width: 550px;
+        left: 20%;
+    }
 }

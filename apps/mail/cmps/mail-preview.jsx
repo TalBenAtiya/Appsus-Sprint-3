@@ -46,13 +46,17 @@ export function MailPreview({mail, starToggle, setMailAsRead, importantToggle, t
 
 
     return <Link to={"/mail/" + mail.id}> <article onClick={() => onReadMail(mail.id)} className={getMailClass(mail)}>
+      <section className="label-btns">
       <button onClick={(ev) => onSetStar(ev, mail.id)} className="star"><img src={setStarImg()} /></button>
       <button onClick={(ev) => onSetImportant(ev, mail.id)} className="important"><img src={setImprotantImg()} /></button>
+      </section>
+      <section className="mail-info">
       <div className="sent-from"> {mail.sentFrom}</div>
       <div className="subject">{mail.subject} -</div>
       <div className="mail-body">{mail.body}</div>
+      </section>
       <div className="sent-at">{utilService.getDate(mail.sentAt)}
-      <button onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/svg/trash-icon.svg" /></button>
+      <button onClick={(ev) => onTrashMail(ev ,mail.id)}><img src="assets/svg/trash-icon.svg"/></button>
       </div>
     </article></Link>
  

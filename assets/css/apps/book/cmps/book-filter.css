@@ -1,6 +1,7 @@
 .book-filter {
     margin: 30px 0;
     display: flex;
+    flex-direction: column;
 }
 
 .book-filter label {
@@ -10,9 +11,6 @@
 
 .book-filter input {
     margin-inline-start: 5px;
-    /* border: 0; */
-    /* padding: 5px; */
-    /* background-color: rgb(233, 233, 233); */
     border: 1px solid var(--clr-main);
     position: relative;
     padding: 10px;
@@ -47,13 +45,16 @@
 
 .book-filter a {
     display: flex;
-    flex: 1;
+    flex: 0;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .book-filter a button {
-    width: fit-content;
-    align-self: flex-end;
+    width: 80px;
+    align-self: flex-start;
+    margin-inline-start: 10px;
 }
 
 
@@ -61,4 +62,19 @@
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     background-color: var(--clr-main);
     color: white;
+}
+
+
+@media (min-width: 720px) { 
+    .book-filter {
+        flex-direction: row;
+    }
+
+    .book-filter a {
+        flex: 1;
+    }
+
+    .book-filter a button {
+        align-self: flex-end;
+    }
 }

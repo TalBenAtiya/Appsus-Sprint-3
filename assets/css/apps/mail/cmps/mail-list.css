@@ -15,7 +15,8 @@
     background-color: white;
     box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--clr-main);
-
+    width: 70%;
+    align-self: flex-end
 }
 
 .search-bar:focus {
@@ -30,10 +31,16 @@
     gap: 15px;
 }
 
-
-@media (min-width: 1450px) {
+@media (min-width: 100px) {
     .list-container {
+        width: 60%;
+    }
+}
+
+@media (min-width: 750px) {
+    .search-bar {
         width: 100%;
+        align-self: flex-start;
     }
 }
 
@@ -43,8 +50,8 @@
     }
 }
 
-@media (min-width: 550px) {
+@media (min-width: 1450px) {
     .list-container {
-        width: 60%;
+        width: 80%;
     }
 }

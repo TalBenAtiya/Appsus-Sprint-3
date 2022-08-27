@@ -35,7 +35,7 @@ export class MailDetails extends React.Component {
         return <section className="mail-details-container main-layout">
             {/* <MailOptions onGoBack={this.onGoBack}/> */}
             <section className="mail-details">
-                <div className="details-container">
+                <div className="details-info">
                     <div>
                         Subject:
                         <h2>{mail.subject}</h2>
