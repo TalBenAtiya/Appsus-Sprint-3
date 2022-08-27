@@ -1,5 +1,4 @@
 import { mailService } from "../services/mail.service.js"
-import { MailOptions } from "../cmps/mail-options.jsx"
 import { noteService } from "../../note/services/note.service.js"
  
 
