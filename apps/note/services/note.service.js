@@ -282,7 +282,7 @@ function createNoteTxt(title, txt) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
@@ -312,7 +312,7 @@ function createNoteImg(title, txt, url) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
@@ -331,7 +331,7 @@ function createNoteTodos(title, todos) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
@@ -351,7 +351,7 @@ function createNoteVideo(title, txt, url) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
@@ -392,10 +392,12 @@ function onRemoveLabel(noteId, labelIdx,isPinned) {
 }
 
 function onMakePinned(noteId,isPinned) {
-    const notesFrom = _loadFromStorage(isPinned)
-    const notesTo = _loadFromStorage(!isPinned)
+    let notesFrom = _loadFromStorage(isPinned)
+    let notesTo = _loadFromStorage(!isPinned)
+    let note = notesFrom.find(note=>note.id === noteId)
+    note.isPinned=!isPinned
     console.log('notes to',notesTo,'notes from',notesFrom)
-    notesTo.push(notesFrom.splice(notesFrom.findIndex(note=>note.id===noteId),1)[0])
+    notesTo.unshift(notesFrom.splice(notesFrom.findIndex(note=>note.id===noteId),1)[0])
     console.log('notes to',notesTo,'notes from',notesFrom)
     _saveToStorage(notesFrom,isPinned)
     _saveToStorage(notesTo,!isPinned)
