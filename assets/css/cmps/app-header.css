@@ -72,16 +72,6 @@ nav :first-child {
     .app-hamburger-icon {
         display: none;
     }
-
-    /* nav { */
-        /* position: static; */
-        /* flex-direction: row; */
-        /* width: fit-content; */
-        /* gap: 10px; */
-        /* background-color: none; */
-        /* height: fit-content; */
-        
-    /* } */
     nav {
         display: flex;
         position: unset;
