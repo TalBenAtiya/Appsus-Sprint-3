@@ -302,7 +302,9 @@ function setMailStar(mailId) {
 }
 
 function sendMail(mail) {
+    console.log(mail)
     let mails = _loadFromStorage()
+    console.log(mails)
     mails.unshift(mail)
     _saveToStorage(mails)
     return Promise.resolve()

@@ -282,7 +282,7 @@ function createNoteTxt(title, txt) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
@@ -312,7 +312,7 @@ function createNoteImg(title, txt, url) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
@@ -331,7 +331,7 @@ function createNoteTodos(title, todos) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
@@ -351,7 +351,7 @@ function createNoteVideo(title, txt, url) {
         },
         label: [],
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes,false)
     return Promise.resolve(notes)
 }
