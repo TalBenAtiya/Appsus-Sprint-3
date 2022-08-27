@@ -58,7 +58,6 @@ class _NoteEdit extends React.Component {
             </div>
         </section >
     }
-
 }
 
 export const NoteEdit = withRouter(_NoteEdit)
