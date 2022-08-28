@@ -6,6 +6,7 @@
     border-color: #e0e0e0;
     background-color: #fff;
     border: 1px solid transparent;
+    outline: 0px solid transparent;
     cursor: text;
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     display: flex;
@@ -20,6 +21,34 @@
     justify-content: center;
     flex: 3;
     
+}
+
+.note-add h3 {
+    outline: 0px solid transparent;
+}
+
+.note-add p{
+    outline: 0px solid transparent;
+}
+
+.note-add div {
+    outline: 0px solid transparent;
+}
+
+.note-add li {
+    outline: 0px solid transparent;
+}
+
+.note-preview h3{
+    outline: 0px solid transparent;
+}
+
+.note-preview p{
+    outline: 0px solid transparent;
+}
+
+.note-preview li {
+    outline: 0px solid transparent;
 }
 
 [contentEditable=true]:empty:not(:focus):before{

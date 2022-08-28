@@ -128,6 +128,7 @@ export class NoteIndex extends React.Component {
     }
 
     onMakePinned = (noteId, isPinned) => {
+        console.log()
         noteService.onMakePinned(noteId, isPinned)
             .then(() => {
                 this.loadNotes()

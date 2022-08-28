@@ -26,5 +26,3 @@ export class AddingNoteTxt extends React.Component {
     }
 }
 
-// onBlur={(ev) => createNote(ev, 'txt')}
-// {createNoteTxt,created}
