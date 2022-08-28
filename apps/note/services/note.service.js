@@ -238,7 +238,7 @@ function changeNoteColor(noteId, color,isPinned) {
     let note = notes.find(note => note.id === noteId)
     note.style.backgroundColor = `${color}`
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function onchangeTxt(noteId, txt, property,isPinned) {
@@ -246,7 +246,7 @@ function onchangeTxt(noteId, txt, property,isPinned) {
     let note = notes.find(note => note.id === noteId)
     note.info[property] = txt
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function onchangeTodoTxt(noteId, txt, todoId,isPinned) {
@@ -255,7 +255,7 @@ function onchangeTodoTxt(noteId, txt, todoId,isPinned) {
     let todo = note.info.todos.find(todo => todo.id === todoId)
     todo.txt = txt
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function todoIsDone(noteId, todoId,isPinned) {
@@ -264,7 +264,7 @@ function todoIsDone(noteId, todoId,isPinned) {
     let todo = note.info.todos.find(todo => todo.id === todoId)
     todo.isDone = !todo.isDone
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function createNoteTxt(title, txt) {
@@ -284,7 +284,7 @@ function createNoteTxt(title, txt) {
     }
     notes.unshift(note)
     _saveToStorage(notes,false)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function onRemoveNote(noteId,isPinned) {
@@ -293,7 +293,7 @@ function onRemoveNote(noteId,isPinned) {
     console.log('idx', idx)
     notes.splice(idx, 1)
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 
@@ -315,7 +315,7 @@ function createNoteImg(title, txt, url) {
     }
     notes.unshift(note)
     _saveToStorage(notes,false)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function createNoteTodos(title, todos) {
@@ -356,7 +356,7 @@ function createNoteVideo(title, txt, url) {
     }
     notes.unshift(note)
     _saveToStorage(notes,false)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function addEmbed(url) {
@@ -375,7 +375,7 @@ function addLabel(noteId, label,isPinned) {
     let note = notes.find(note => note.id === noteId)
     note.label.push(label)
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function onchangeLabelTxt(noteId, labelIdx, labelTxt,isPinned) {
@@ -383,7 +383,7 @@ function onchangeLabelTxt(noteId, labelIdx, labelTxt,isPinned) {
     let note = notes.find(note => note.id === noteId)
     note.label[labelIdx] = labelTxt
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function onRemoveLabel(noteId, labelIdx,isPinned) {
@@ -391,7 +391,7 @@ function onRemoveLabel(noteId, labelIdx,isPinned) {
     let note = notes.find(note => note.id === noteId)
     note.label.splice(labelIdx, 1)
     _saveToStorage(notes,isPinned)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 function onMakePinned(noteId,isPinned) {

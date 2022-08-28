@@ -30,7 +30,7 @@ export class NoteIndex extends React.Component {
 
     onChangeBackgroundColor = (noteId, color, isPinned) => {
         noteService.changeNoteColor(noteId, color, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
@@ -45,7 +45,7 @@ export class NoteIndex extends React.Component {
 
     onchangeTxt = (noteId, txt, property, isPinned) => {
         noteService.onchangeTxt(noteId, txt, property, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
@@ -53,7 +53,7 @@ export class NoteIndex extends React.Component {
 
     onchangeTodoTxt = (noteId, txt, todoId, isPinned) => {
         noteService.onchangeTodoTxt(noteId, txt, todoId, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
@@ -61,7 +61,7 @@ export class NoteIndex extends React.Component {
 
     onTodoIsDone = (noteId, todoId, isPinned) => {
         noteService.todoIsDone(noteId, todoId, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
@@ -69,14 +69,14 @@ export class NoteIndex extends React.Component {
 
     createNoteTxt = (title, txt) => {
         noteService.createNoteTxt(title, txt)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
             })
     }
 
     onRemoveNote = (noteId, isPinned) => {
         noteService.onRemoveNote(noteId, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
@@ -84,28 +84,28 @@ export class NoteIndex extends React.Component {
 
     createNoteImg = (title, txt, url) => {
         noteService.createNoteImg(title, txt, url)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
             })
     }
 
     createNoteTodos = (title, todos) => {
         noteService.createNoteTodos(title, todos)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
             })
     }
 
     createNoteVideo = (title, txt, url) => {
         noteService.createNoteVideo(title, txt, url)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
             })
     }
 
     onaddLabel = (noteId, label, isPinned) => {
         noteService.addLabel(noteId, label, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
@@ -113,7 +113,7 @@ export class NoteIndex extends React.Component {
 
     onchangeLabelTxt = (noteId, labelIdx, labelTxt, isPinned) => {
         noteService.onchangeLabelTxt(noteId, labelIdx, labelTxt, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
@@ -121,7 +121,7 @@ export class NoteIndex extends React.Component {
 
     onRemoveLabel = (noteId, labelIdx, isPinned) => {
         noteService.onRemoveLabel(noteId, labelIdx, isPinned)
-            .then((notes) => {
+            .then(() => {
                 this.loadNotes()
                 this.loadPinned()
             })
