@@ -117,12 +117,12 @@ export class MailIndex extends React.Component {
     }
 
     render() {
-        const { mails, isCompose } = this.state
+        const { mails, isCompose, filterBy } = this.state
         if (!mails) return <span></span>
 
         return <section className="mail-index main-layout">
           <img onClick={this.toggleUserSettings} className="mail-hamburger" src="assets/img/mail-hamburger.png" alt="" />
-            <MailOptions onSetFilter={this.onSetFilter} mails={mails} getUnreadMails={this.getUnreadMails}
+            <MailOptions onSetFilter={this.onSetFilter} filterBy={filterBy}  mails={mails} getUnreadMails={this.getUnreadMails}
                 openComposeModal={this.openComposeModal} isCompose={isCompose} sortMails={this.sortMails}  getToggleClass={this.getToggleClass} />
 
             <div className="list-container">
