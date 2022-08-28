@@ -33,6 +33,7 @@
 
 .user-options .active {
 background-color: var(--clr-main);
+color: white;
 }
 .user-options.open {
     width: 20%;
