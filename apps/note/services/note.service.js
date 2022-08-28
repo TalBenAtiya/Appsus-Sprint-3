@@ -272,7 +272,7 @@ function createNoteTxt(title, txt) {
     let note = {
         id: utilService.makeId(),
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info: {
             title: title ? title : '',
             txt: txt ? txt : ''
@@ -302,6 +302,7 @@ function createNoteImg(title, txt, url) {
     let note = {
         id: utilService.makeId(),
         type: "note-img",
+        isPinned:false,
         info: {
             url: url,
             title: title ? title : '',
@@ -322,6 +323,7 @@ function createNoteTodos(title, todos) {
     let note = {
         id: utilService.makeId(),
         type: "note-todos",
+        isPinned:false,
         info: {
             title: title,
             todos: todos
@@ -341,6 +343,7 @@ function createNoteVideo(title, txt, url) {
     let note = {
         id: utilService.makeId(),
         type: "note-video",
+        isPinned:false,
         info: {
             url: `https://www.youtube.com/embed/${addEmbed(url)}`,
             title: title ? title : '',
